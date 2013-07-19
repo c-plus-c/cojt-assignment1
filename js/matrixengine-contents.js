@@ -334,7 +334,6 @@ MxeDefaultContents.prototype.createTextureCasts = function() {
 	for(var i=0;i<100;i++){
 		var tex = cast = this.createMxeTexture(this,13+i,"bag"+("00"+i).slice(-3));
 		cast.imageSrc="bag_images/"+this.BAG_DATA[i][this.KEY_URL];
-		console.log(cast.imageSrc);
 		cast.presetWidth=256;
 		cast.presetHeight=256;
 		cast.alphaType = MxeMaterial.def.HAS_TRANSPARENT|MxeMaterial.def.HAS_TRANSLUCENT;
@@ -352,13 +351,56 @@ MxeDefaultContents.prototype.createTextureCasts = function() {
 		bagobj.title = this.BAG_DATA[i][this.KEY_TITLE];
 		bagobj.hue = this.BAG_DATA[i][this.KEY_HUE];
 		bagobj.price = this.BAG_DATA[i][this.KEY_PRICE];
-		console.log(bagobj.title);
 		
 		this.bagObject[i] = bagobj;
 	}
-	
+};
 
-    
+MxeDefaultContents.prototype.IdSort = function(Option){
+	this.bagObject.sort(function(a,b){
+		if(Option == "Bigger"){
+			return (a.id < b.id ? 1 : -1);
+		}else{
+			return (a.id > b.id ? 1 : -1);
+		}
+	});
+	
+};
+
+MxeDefaultContents.prototype.HueSort = function(Option){
+	this.bagObject.sort(function(a,b){
+		if(Option == "Bigger"){
+			return (a.hue < b.hue ? 1 : -1);
+		}else{
+			return (a.hue > b.hue ? 1 : -1);
+		}
+	});
+	
+};
+
+MxeDefaultContents.prototype.PriceSort = function(){
+	this.bagObject.sort(function(a,b){
+		if(Option == "Bigger"){
+			return (a.price < b.price ? 1 : -1);
+		}else{
+			return (a.price > b.price ? 1 : -1);
+		}
+	});
+	
+};
+
+MxeDefaultContents.prototype.spread = function(line,dataArray){
+	var startLine = [1,41,81,121,161];
+	var state=0;
+	var panelPointer=0;
+	for(var i=0;i<dataArray.length;i++){
+		var delta=0;
+		delta=(state==0)?0:20;
+		console.log("Panel"+(startLine[line-1]+delta+panelPointer));
+		this.scores[3].tracksL [ "Panel"+(startLine[line-1]+delta+panelPointer) ].cast.sectors [ 0 ].material.textureInfo [ 0 ].cast = dataArray[i].texture;
+		panelPointer = (state==1)? panelPointer+1 : panelPointer;
+		state=(state+1)%2;
+	}
 };
 
 MxeDefaultContents.prototype.createBitmapCasts = function() {

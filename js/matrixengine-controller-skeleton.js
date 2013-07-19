@@ -672,10 +672,63 @@ MxeDefaultController.prototype.registerEventListeners = function() {
   this.WalkerScore.tracks[0].frame.visible=true;
   
   this.FinalRoom.tracksL["CastBoard"].setPuppet(true);
+  this.FinalRoom.tracksL["CastBoard"].frame.pos=[0,-100,0];
   this.FinalRoom.tracksL["CastBoard"].frame.visible=true;
   
-  this.FinalRoom.tracksL [ "Panel1" ].cast.sectors [ 0 ].material.textureInfo [ 0 ].cast = this.contents.bagObject[0].texture;
+  this.contents.HueSort("Bigger");
+  this.contents.PriceSort("Smaller");
 };
+
+MxeDefaultController.prototype.Room1Preparetion = function(){　//ID順にソートした部屋
+	this.contents.IdSort("Smaller");
+	
+	this.contents.spread(5,this.contents.bagObject.slice(0,20));
+	this.contents.spread(3,this.contents.bagObject.slice(20,40));
+	this.contents.spread(1,this.contents.bagObject.slice(40,60));
+	this.contents.spread(2,this.contents.bagObject.slice(60,80));
+	this.contents.spread(4,this.contents.bagObject.slice(80,100));
+}
+
+MxeDefaultController.prototype.Room2Preparetion = function(){//価格ソート(昇順)
+	this.contents.PriceSort("Bigger");
+	
+	this.contents.spread(5,this.contents.bagObject.slice(0,20));
+	this.contents.spread(3,this.contents.bagObject.slice(20,40));
+	this.contents.spread(1,this.contents.bagObject.slice(40,60));
+	this.contents.spread(2,this.contents.bagObject.slice(60,80));
+	this.contents.spread(4,this.contents.bagObject.slice(80,100));
+}
+
+MxeDefaultController.prototype.Room3Preparetion = function(){//価格ソート(降順)
+	this.contents.PriceSort("Smaller");
+	
+	this.contents.spread(5,this.contents.bagObject.slice(0,20));
+	this.contents.spread(3,this.contents.bagObject.slice(20,40));
+	this.contents.spread(1,this.contents.bagObject.slice(40,60));
+	this.contents.spread(2,this.contents.bagObject.slice(60,80));
+	this.contents.spread(4,this.contents.bagObject.slice(80,100));
+}
+
+MxeDefaultController.prototype.Room4Preparetion = function(){//Hueソート(昇順)
+	this.contents.HueSort("Bigger");
+	
+	this.contents.spread(5,this.contents.bagObject.slice(0,20));
+	this.contents.spread(3,this.contents.bagObject.slice(20,40));
+	this.contents.spread(1,this.contents.bagObject.slice(40,60));
+	this.contents.spread(2,this.contents.bagObject.slice(60,80));
+	this.contents.spread(4,this.contents.bagObject.slice(80,100));
+}
+
+MxeDefaultController.prototype.Room5Preparetion = function(){//Hueソート(降順)
+	this.contents.PriceSort("Smaller");
+	
+	this.contents.spread(5,this.contents.bagObject.slice(0,20));
+	this.contents.spread(3,this.contents.bagObject.slice(20,40));
+	this.contents.spread(1,this.contents.bagObject.slice(40,60));
+	this.contents.spread(2,this.contents.bagObject.slice(60,80));
+	this.contents.spread(4,this.contents.bagObject.slice(80,100));
+}
+
 
 const VK_UP=38;
 const VK_DOWN=40;
@@ -690,7 +743,6 @@ var hold={VK_UP:false,VK_DOWN:false,VK_LEFT:false,VK_RIGHT:false,VK_Z:false,VK_X
 
 function Enable(tag){
 	hold[tag]=true;
-	console.log(tag);
 }
 
 function Unable(){
@@ -726,6 +778,8 @@ MxeDefaultController.eventproc.onCastClick0 = function(e) {
   this.WalkerScore.seekFrame(this.WalkerScore.frameLabelPos['Stop']);
   SelectedRoomX=this.WalkerScore.tracks[0].frame.pos[0];
   SelectedRoom=LingeriesRoom;
+  
+  this.Room1Preparetion();
 };
 
 //=============================================
@@ -737,6 +791,8 @@ MxeDefaultController.eventproc.onCastClick1 = function(e) {
   this.WalkerScore.seekFrame(this.WalkerScore.frameLabelPos['Stop']);
   SelectedRoomX=this.WalkerScore.tracks[0].frame.pos[0];
   SelectedRoom=TopsRoom;
+  
+  this.Room2Preparetion();
 };
 
 //=============================================
@@ -748,6 +804,8 @@ MxeDefaultController.eventproc.onCastClick2 = function(e) {
   this.WalkerScore.seekFrame(this.WalkerScore.frameLabelPos['Stop']);
   SelectedRoomX=this.WalkerScore.tracks[0].frame.pos[0];
   SelectedRoom=BottomsRoom;
+  
+  this.Room3Preparetion();
 };
 
 //=============================================
@@ -759,6 +817,8 @@ MxeDefaultController.eventproc.onCastClick3 = function(e) {
   this.WalkerScore.seekFrame(this.WalkerScore.frameLabelPos['Stop']);
   SelectedRoomX=this.WalkerScore.tracks[0].frame.pos[0];
   SelectedRoom=BagsRoom;
+  
+  this.Room4Preparetion();
 };
 
 //=============================================
@@ -770,6 +830,8 @@ MxeDefaultController.eventproc.onCastClick4 = function(e) {
   this.WalkerScore.seekFrame(this.WalkerScore.frameLabelPos['Stop']);
   SelectedRoomX=this.WalkerScore.tracks[0].frame.pos[0];
   SelectedRoom=SundriesRoom;
+  
+  this.Room5Preparetion();
 };
 
 //=============================================
@@ -789,13 +851,11 @@ var keyBuffer = [];
 MxeDefaultController.eventproc.onExitFrame7 = function(e) {
 	var XTranslation=this.WalkerScore.tracks[0].frame.pos[0];
 	if(getKeyState(VK_LEFT)){
-		console.log("VK_LEFT");
 		if(XTranslation>-420){
 			this.WalkerScore.seekFrame(this.WalkerScore.frameLabelPos['MoveToLeft']);
 		}
 	
 	}else if(getKeyState(VK_RIGHT)){
-		console.log("VK_RIGHT");
 		if(XTranslation<420){
 			this.WalkerScore.seekFrame(this.WalkerScore.frameLabelPos['MoveToRight']);
 		}
@@ -807,7 +867,6 @@ MxeDefaultController.eventproc.onExitFrame7 = function(e) {
 //=============================================
 
 MxeDefaultController.eventproc.onExitFrame8 = function(e) {
-  console.log("Init");
 };
 
 //=============================================
@@ -986,7 +1045,6 @@ var rotation_velocity;
 MxeDefaultController.eventproc.onCastClick21 = function(e) {
 	if(SeekingState == 1) return;
 	var l=this.FinalRoom.tracks[e.track.index].frame.pos;
-	console.log(this.FinalRoom.tracks[e.track.index]);
 	var w=new Array(3);
 	w[0]=this.FinalRoom.tracks[e.track.index].frame.worldMatrix[12];
 	w[1]=this.FinalRoom.tracks[e.track.index].frame.worldMatrix[13];
@@ -1026,6 +1084,7 @@ MxeDefaultController.eventproc.onCastClick21 = function(e) {
 	this.FinalRoom.tracksL["CastBoard"].frame.pos=w;
 	this.WalkerScore.tracks[0].frame.rot[0]=0;
 	
+	this.FinalRoom.tracksL["CastBoard"].cast.sectors [ 0 ].material.textureInfo [ 0 ].cast = this.FinalRoom.tracksL[e.track.label].cast.sectors [ 0 ].material.textureInfo [ 0 ].cast;
 	this.FinalRoom.seekFrame(this.FinalRoom.frameLabelPos['BoardCasting']);
 	
 	SeekingState=3;
@@ -1036,7 +1095,7 @@ MxeDefaultController.eventproc.onCastClick21 = function(e) {
 //=============================================
 
 MxeDefaultController.eventproc.onExitFrame22 = function(e) {
-	console.log("Casted");
+
 };
 
 //=============================================
