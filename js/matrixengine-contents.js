@@ -221,11 +221,11 @@ MxeDefaultContents.prototype.createTextureCasts = function() {
     bbmat.color = F32A([1, 1, 1, 1]);
     bbmat.textureInfo[0].cast = cast
 	
-	var KEY_ID = 0;
-	var KEY_URL = 1;
-	var KEY_TITLE = 2;
-	var KEY_PRICE = 3;
-	var KEY_HUE = 4;
+	this.KEY_ID = 0;
+	this.KEY_URL = 1;
+	this.KEY_TITLE = 2;
+	this.KEY_PRICE = 3;
+	this.KEY_HUE = 4;
 	
 	this.BAG_DATA = [
 		[ 1, "bag001.jpg", "バルーン型トートバッグ【ネット限定カラーあり】", 3045, 36 ],
@@ -333,7 +333,7 @@ MxeDefaultContents.prototype.createTextureCasts = function() {
 	this.bagObject = new Array(100);
 	for(var i=0;i<100;i++){
 		var tex = cast = this.createMxeTexture(this,13+i,"bag"+("00"+i).slice(-3));
-		cast.imageSrc="bag_images/"+this.BAG_DATA[i][KEY_URL];
+		cast.imageSrc="bag_images/"+this.BAG_DATA[i][this.KEY_URL];
 		console.log(cast.imageSrc);
 		cast.presetWidth=256;
 		cast.presetHeight=256;
@@ -348,10 +348,10 @@ MxeDefaultContents.prototype.createTextureCasts = function() {
 		
 		var bagobj = new Object();
 		bagobj.texture = tex;
-		bagobj.id = this.BAG_DATA[i][KEY_ID];
-		bagobj.title = this.BAG_DATA[i][KEY_TITLE];
-		bagobj.hue = this.BAG_DATA[i][KEY_HUE];
-		bagobj.price = this.BAG_DATA[i][KEY_PRICE];
+		bagobj.id = this.BAG_DATA[i][this.KEY_ID];
+		bagobj.title = this.BAG_DATA[i][this.KEY_TITLE];
+		bagobj.hue = this.BAG_DATA[i][this.KEY_HUE];
+		bagobj.price = this.BAG_DATA[i][this.KEY_PRICE];
 		console.log(bagobj.title);
 		
 		this.bagObject[i] = bagobj;
