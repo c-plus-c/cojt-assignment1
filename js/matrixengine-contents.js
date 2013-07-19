@@ -220,6 +220,30 @@ MxeDefaultContents.prototype.createTextureCasts = function() {
     bbmat = bbinfo.material;
     bbmat.color = F32A([1, 1, 1, 1]);
     bbmat.textureInfo[0].cast = cast
+	
+	this.bagObject = new Array(100);
+	for(var i=0;i<100;i++){
+		var tex = cast = this.createMxeTexture(this,13+i,"bag"+("00"+i).slice(-3));
+		cast.imageSrc="bag_images/bag"+("00"+(i+1)).slice(-3)+".jpg";
+		console.log(cast.imageSrc);
+		cast.presetWidth=256;
+		cast.presetHeight=256;
+		cast.alphaType = MxeMaterial.def.HAS_TRANSPARENT|MxeMaterial.def.HAS_TRANSLUCENT;
+		cast.rotateCenter = F32A([0, 0, 0]);
+		bbinfo = cast.billboardInfo = this.createMxeBillboardInfo(this.createMxeMaterial(), this.createMxeSectorTextureInfo());
+		bbinfo.pos = F32A([0, 0, 0]);
+		bbinfo.siz = F32A([1, 1, 0.0]);
+		bbmat = bbinfo.material;
+		bbmat.color = F32A([1, 1, 1, 1]);
+		bbmat.textureInfo[0].cast = cast;
+		
+		var bagobj = new Object();
+		bagobj.texture = tex;
+		bagobj.hue = 100;
+		bagobj.price = 100;
+		
+		this.bagObject[i] = bagobj;
+	}
     
 };
 

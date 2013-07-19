@@ -674,7 +674,7 @@ MxeDefaultController.prototype.registerEventListeners = function() {
   this.FinalRoom.tracksL["CastBoard"].setPuppet(true);
   this.FinalRoom.tracksL["CastBoard"].frame.visible=true;
   
-  console.log(this.FinalRoom);
+  this.FinalRoom.tracksL [ "Panel1" ].cast.sectors [ 0 ].material.textureInfo [ 0 ].cast = this.contents.bagObject[0].texture;
 };
 
 const VK_UP=38;
