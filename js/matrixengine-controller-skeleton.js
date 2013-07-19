@@ -1043,7 +1043,8 @@ var rotation_velocity;
 //=============================================
 
 MxeDefaultController.eventproc.onCastClick21 = function(e) {
-	if(SeekingState == 1) return;
+	console.log(e.track);
+	if(SeekingState == 1 || e.track.cast.sectors[0].material.textureInfo[0].cast.label == "panelsample") return;
 	var l=this.FinalRoom.tracks[e.track.index].frame.pos;
 	var w=new Array(3);
 	w[0]=this.FinalRoom.tracks[e.track.index].frame.worldMatrix[12];

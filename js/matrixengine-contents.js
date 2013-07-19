@@ -396,7 +396,6 @@ MxeDefaultContents.prototype.spread = function(line,dataArray){
 	for(var i=0;i<dataArray.length;i++){
 		var delta=0;
 		delta=(state==0)?0:20;
-		console.log("Panel"+(startLine[line-1]+delta+panelPointer));
 		this.scores[3].tracksL [ "Panel"+(startLine[line-1]+delta+panelPointer) ].cast.sectors [ 0 ].material.textureInfo [ 0 ].cast = dataArray[i].texture;
 		panelPointer = (state==1)? panelPointer+1 : panelPointer;
 		state=(state+1)%2;
