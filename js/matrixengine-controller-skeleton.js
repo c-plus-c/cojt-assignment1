@@ -677,7 +677,6 @@ MxeDefaultController.prototype.registerEventListeners = function() {
 };
 
 MxeDefaultController.prototype.Room1Preparetion = function(){　//ID順にソートした部屋
-	console.log("Room1");
 
 	this.contents.IdSort("Smaller");
 	
@@ -689,7 +688,6 @@ MxeDefaultController.prototype.Room1Preparetion = function(){　//ID順にソー
 }
 
 MxeDefaultController.prototype.Room2Preparetion = function(){//価格ソート(昇順)
-	console.log("Room2");
 
 	this.contents.PriceSort("Bigger");
 	
@@ -701,7 +699,6 @@ MxeDefaultController.prototype.Room2Preparetion = function(){//価格ソート(�
 }
 
 MxeDefaultController.prototype.Room3Preparetion = function(){//価格ソート(降順)
-	console.log("Room3");
 	
 	this.contents.PriceSort("Smaller");
 	
@@ -713,7 +710,6 @@ MxeDefaultController.prototype.Room3Preparetion = function(){//価格ソート(�
 }
 
 MxeDefaultController.prototype.Room4Preparetion = function(){//Hueソート(昇順)
-	console.log("Room4");
 	
 	this.contents.HueSort("Bigger");
 	
@@ -725,7 +721,6 @@ MxeDefaultController.prototype.Room4Preparetion = function(){//Hueソート(昇�
 }
 
 MxeDefaultController.prototype.Room5Preparetion = function(){//Hueソート(降順)
-	console.log("Room5");
 	
 	this.contents.HueSort("Smaller");
 	
@@ -1050,7 +1045,6 @@ var rotation_velocity;
 //=============================================
 
 MxeDefaultController.eventproc.onCastClick21 = function(e) {
-	console.log(e.track);
 	if(SeekingState == 1 || e.track.cast.sectors[0].material.textureInfo[0].cast.label == "panelsample") return;
 	var l=this.FinalRoom.tracks[e.track.index].frame.pos;
 	var w=new Array(3);
