@@ -674,9 +674,6 @@ MxeDefaultController.prototype.registerEventListeners = function() {
   this.FinalRoom.tracksL["CastBoard"].setPuppet(true);
   this.FinalRoom.tracksL["CastBoard"].frame.pos=[0,-100,0];
   this.FinalRoom.tracksL["CastBoard"].frame.visible=true;
-  
-  this.contents.HueSort("Bigger");
-  this.contents.PriceSort("Smaller");
 };
 
 MxeDefaultController.prototype.Room1Preparetion = function(){　//ID順にソートした部屋
@@ -720,7 +717,7 @@ MxeDefaultController.prototype.Room4Preparetion = function(){//Hueソート(昇�
 }
 
 MxeDefaultController.prototype.Room5Preparetion = function(){//Hueソート(降順)
-	this.contents.PriceSort("Smaller");
+	this.contents.HueSort("Smaller");
 	
 	this.contents.spread(5,this.contents.bagObject.slice(0,20));
 	this.contents.spread(3,this.contents.bagObject.slice(20,40));
