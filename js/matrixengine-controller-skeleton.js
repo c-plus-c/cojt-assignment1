@@ -677,6 +677,8 @@ MxeDefaultController.prototype.registerEventListeners = function() {
 };
 
 MxeDefaultController.prototype.Room1Preparetion = function(){　//ID順にソートした部屋
+	console.log("Room1");
+
 	this.contents.IdSort("Smaller");
 	
 	this.contents.spread(5,this.contents.bagObject.slice(0,20));
@@ -687,6 +689,8 @@ MxeDefaultController.prototype.Room1Preparetion = function(){　//ID順にソー
 }
 
 MxeDefaultController.prototype.Room2Preparetion = function(){//価格ソート(昇順)
+	console.log("Room2");
+
 	this.contents.PriceSort("Bigger");
 	
 	this.contents.spread(5,this.contents.bagObject.slice(0,20));
@@ -697,6 +701,8 @@ MxeDefaultController.prototype.Room2Preparetion = function(){//価格ソート(�
 }
 
 MxeDefaultController.prototype.Room3Preparetion = function(){//価格ソート(降順)
+	console.log("Room3");
+	
 	this.contents.PriceSort("Smaller");
 	
 	this.contents.spread(5,this.contents.bagObject.slice(0,20));
@@ -707,6 +713,8 @@ MxeDefaultController.prototype.Room3Preparetion = function(){//価格ソート(�
 }
 
 MxeDefaultController.prototype.Room4Preparetion = function(){//Hueソート(昇順)
+	console.log("Room4");
+	
 	this.contents.HueSort("Bigger");
 	
 	this.contents.spread(5,this.contents.bagObject.slice(0,20));
@@ -717,6 +725,8 @@ MxeDefaultController.prototype.Room4Preparetion = function(){//Hueソート(昇�
 }
 
 MxeDefaultController.prototype.Room5Preparetion = function(){//Hueソート(降順)
+	console.log("Room5");
+	
 	this.contents.HueSort("Smaller");
 	
 	this.contents.spread(5,this.contents.bagObject.slice(0,20));

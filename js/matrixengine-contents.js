@@ -375,10 +375,9 @@ MxeDefaultContents.prototype.HueSort = function(Option){
 			return (a.hue > b.hue ? 1 : -1);
 		}
 	});
-	
 };
 
-MxeDefaultContents.prototype.PriceSort = function(){
+MxeDefaultContents.prototype.PriceSort = function(Option){
 	this.bagObject.sort(function(a,b){
 		if(Option == "Bigger"){
 			return (a.price < b.price ? 1 : -1);
@@ -386,7 +385,6 @@ MxeDefaultContents.prototype.PriceSort = function(){
 			return (a.price > b.price ? 1 : -1);
 		}
 	});
-	
 };
 
 MxeDefaultContents.prototype.spread = function(line,dataArray){
