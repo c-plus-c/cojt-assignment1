@@ -685,6 +685,7 @@ MxeDefaultController.eventproc = {};
 MxeDefaultController.prototype.Room1Preparetion = function(){　//ID順にソートした部屋
 
 	this.contents.IdSort("Smaller");
+	this.contentsInfoMapper={};
 	
 	this.contents.spread(5,this.contents.bagObject.slice(0,20));
 	this.contents.spread(3,this.contents.bagObject.slice(20,40));
@@ -696,7 +697,7 @@ MxeDefaultController.prototype.Room1Preparetion = function(){　//ID順にソー
 MxeDefaultController.prototype.Room2Preparetion = function(){//価格ソート(昇順)
 
 	this.contents.PriceSort("Bigger");
-	
+	this.contentsInfoMapper={};
 	this.contents.spread(5,this.contents.bagObject.slice(0,20));
 	this.contents.spread(3,this.contents.bagObject.slice(20,40));
 	this.contents.spread(1,this.contents.bagObject.slice(40,60));
@@ -707,7 +708,7 @@ MxeDefaultController.prototype.Room2Preparetion = function(){//価格ソート(�
 MxeDefaultController.prototype.Room3Preparetion = function(){//価格ソート(降順)
 	
 	this.contents.PriceSort("Smaller");
-	
+	this.contentsInfoMapper={};
 	this.contents.spread(5,this.contents.bagObject.slice(0,20));
 	this.contents.spread(3,this.contents.bagObject.slice(20,40));
 	this.contents.spread(1,this.contents.bagObject.slice(40,60));
@@ -718,7 +719,7 @@ MxeDefaultController.prototype.Room3Preparetion = function(){//価格ソート(�
 MxeDefaultController.prototype.Room4Preparetion = function(){//Hueソート(昇順)
 	
 	this.contents.HueSort("Bigger");
-	
+	this.contentsInfoMapper={};
 	this.contents.spread(5,this.contents.bagObject.slice(0,20));
 	this.contents.spread(3,this.contents.bagObject.slice(20,40));
 	this.contents.spread(1,this.contents.bagObject.slice(40,60));
@@ -729,7 +730,7 @@ MxeDefaultController.prototype.Room4Preparetion = function(){//Hueソート(昇�
 MxeDefaultController.prototype.Room5Preparetion = function(){//Hueソート(降順)
 	
 	this.contents.HueSort("Smaller");
-	
+	this.contentsInfoMapper={};
 	this.contents.spread(5,this.contents.bagObject.slice(0,20));
 	this.contents.spread(3,this.contents.bagObject.slice(20,40));
 	this.contents.spread(1,this.contents.bagObject.slice(40,60));
@@ -1059,81 +1060,6 @@ var InfoUpSpeed=2.5/cast_frame_num;
 //=============================================
 
 MxeDefaultController.eventproc.onCastClick21 = function(e) {
-/*-- original script (1-73) -----------------
-OnEvent CastClick(Score,Track,Button,X,Y: Integer);
-var lx:Float;
-var ly:Float;
-var lz:Float;
-
-var wx:Float;
-var wy:Float;
-var wz:Float;
-
-var Rot:Float;
-var cx,cy,cz:Float;
-begin
-
-	if SeekingState = 1 then
-		Exit;
-	end;
-
-	lx=TrackProperty [ FinalRoom:Track ].Variable.Pos.X;
-	ly=TrackProperty [ FinalRoom:Track ].Variable.Pos.Y;
-	lz=TrackProperty [ FinalRoom:Track ].Variable.Pos.Z;
-
-	LocalToWorld(Score:Track,lx,ly,lz,wx,wy,wz);
-
-	cast_board_temp_x=wx;
-	cast_board_temp_y=wy;
-	cast_board_temp_z=wz;
-
-	if wy>=20 then
-		Rot=TrackProperty[FinalRoom:(Track-1)].Score.Rol.Y;
-	else
-		Rot=TrackProperty[FinalRoom:(Track-2)].Score.Rol.Y;
-	end;
-
-	if Rot>=3 then
-		Rotation_Total=PI/2;
-		TrackProperty[FinalRoom:CastBoard].Variable.Rol.Y=PI;
-	else
-		Rotation_Total=-PI/2;
-		TrackProperty[FinalRoom:CastBoard].Variable.Rol.Y=0;
-	end;
-
-
-
-	lx=TrackProperty [ WalkerScore:0 ].Variable.Pos.X;
-	ly=TrackProperty [ WalkerScore:0 ].Variable.Pos.Y;
-	lz=TrackProperty [ WalkerScore:0 ].Variable.Pos.Z;
-
-	cast_distance_x=lx-wx;
-	cast_distance_y=ly-wy;
-	cast_distance_z=lz-wz+15;
-
-	cast_velocity_x=cast_distance_x/cast_frame_num;
-	cast_velocity_y=cast_distance_y/cast_frame_num;
-	cast_velocity_z=cast_distance_z/cast_frame_num;
-
-	rotation_velocity=Rotation_Total/cast_frame_num;
-
-	cast_count=0;
-
-	TrackProperty [FinalRoom:CastBoard].Variable.Pos.X=wx;
-	TrackProperty [FinalRoom:CastBoard].Variable.Pos.Y=wy;
-	TrackProperty [FinalRoom:CastBoard].Variable.Pos.Z=wz;
-	TrackProperty[WalkerScore:0].Variable.Rol.X=0;
-
-	SeekFrame(FinalRoom:BoardCasting);
-
-	TrackProperty[FinalRoom:StuffInfoBoard].Variable.Pos.X=lx;
-	//TrackProperty[FinalRoom:StuffInfoBoard].Variable.Pos.Y=ly-4;
-	TrackProperty[FinalRoom:StuffInfoBoard].Variable.Pos.Y=ly-6.5;
-	TrackProperty[FinalRoom:StuffInfoBoard].Variable.Pos.Z=lz+7;
-
-	SeekingState = 3;
-end;
-  -- original script (1-73) -----------------*/
 	if(SeekingState == 1 || e.track.cast.sectors[0].material.textureInfo[0].cast.label == "panelsample") return;
 	var l=this.FinalRoom.tracks[e.track.index].frame.pos;
 	var w=new Array(3);
@@ -1177,7 +1103,9 @@ end;
 	
 	this.FinalRoom.tracksL["CastBoard"].cast.sectors [ 0 ].material.textureInfo [ 0 ].cast = this.FinalRoom.tracksL[e.track.label].cast.sectors [ 0 ].material.textureInfo [ 0 ].cast;
 	this.FinalRoom.seekFrame(this.FinalRoom.frameLabelPos['BoardCasting']);
-	
+
+	console.log(this.contents.InfoMapper);
+	this.FinalRoom.tracksL["StuffInfoBoard"].cast.sectors[0].material.textureInfo[0].cast = this.contents.InfoTexture[this.contents.InfoMapper[e.track.index]-1];
 	this.FinalRoom.tracksL["StuffInfoBoard"].frame.pos=[l[0],l[1]-6,l[2]+6.5];
 	
 	SeekingState=3;
@@ -1303,6 +1231,7 @@ end;
 		this.FinalRoom.seekFrame(1);
 		SeekingState=2;
 		this.FinalRoom.tracksL["StuffInfoBoard"].frame.pos[1]=-100;
+		this.FinalRoom.tracksL["CastBoard"].frame.pos[1]=-100;
 	}
 };
 

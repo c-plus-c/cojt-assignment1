@@ -367,6 +367,26 @@ MxeDefaultContents.prototype.createTextureCasts = function() {
 		
 		this.bagObject[i] = bagobj;
 	}
+	
+	this.InfoTexture = new Array(100);
+	for(var i=0;i<100;i++){
+		var tex = cast = this.createMxeTexture(this,13+i,"bag"+("00"+i).slice(-3));
+		cast.imageSrc="info_images/info"+(i+1)+".png";
+		cast.presetWidth=640;
+		cast.presetHeight=80;
+		cast.alphaType = MxeMaterial.def.HAS_TRANSPARENT|MxeMaterial.def.HAS_TRANSLUCENT;
+		cast.rotateCenter = F32A([0, 0, 0]);
+		bbinfo = cast.billboardInfo = this.createMxeBillboardInfo(this.createMxeMaterial(), this.createMxeSectorTextureInfo());
+		bbinfo.pos = F32A([0, 0, 0]);
+		bbinfo.siz = F32A([1, 1, 0.0]);
+		bbmat = bbinfo.material;
+		bbmat.color = F32A([1, 1, 1, 1]);
+		bbmat.textureInfo[0].cast = cast;
+		
+		this.InfoTexture[i]=tex;
+	}
+	
+	this.InfoMapper = {};
     
 };
 
@@ -408,6 +428,7 @@ MxeDefaultContents.prototype.spread = function(line,dataArray){
 	for(var i=0;i<dataArray.length;i++){
 		var delta=0;
 		delta=(state==0)?0:20;
+		this.InfoMapper[this.scores[3].tracksL [ "Panel"+(startLine[line-1]+delta+panelPointer) ].index]=dataArray[i].id;
 		this.scores[3].tracksL [ "Panel"+(startLine[line-1]+delta+panelPointer) ].cast.sectors [ 0 ].material.textureInfo [ 0 ].cast = dataArray[i].texture;
 		panelPointer = (state==1)? panelPointer+1 : panelPointer;
 		state=(state+1)%2;
