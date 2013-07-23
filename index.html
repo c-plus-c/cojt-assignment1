@@ -1,0 +1,154 @@
+﻿<html>
+
+<head>
+<title>MatrixEngine WebGL Sample</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1" />
+
+<style type="text/css">
+<!--
+
+#controller{
+	float:left;
+}
+
+#matrixengine-canvas{
+	float:left;
+}
+
+.vertallow{
+	width:40px;
+	height:56px;
+}
+
+.vertallow:hover{
+	background-position:right top; 
+}
+
+.sideallow{
+	width:56px;
+	height:40px;
+}
+
+.sideallow:hover{
+	background-position:right top; 
+}
+
+#up{
+	display:block;
+	margin-left:50px;
+	clear:both;
+	background-image:url("controllerpict/up_enable.png");
+}
+
+
+
+
+#left {
+	display:block;
+	margin-top:5px;
+	float:left;
+	background-image:url("controllerpict/left_enable.png");
+}
+
+#right{
+	display:block;
+	margin-top:5px;
+	float:left;
+	margin-left:30px;
+	background-image:url("controllerpict/right_enable.png");
+}
+
+#down{
+	display:block;
+	margin-left:50px;
+	clear:both;
+	float:left;
+	background-image:url("controllerpict/down_enable.png");
+}
+
+#circle{
+	display:block;
+	width:46px;
+	height:46px;
+	float:left;
+	margin-left:50px;
+	background-image:url("controllerpict/maru48.gif");
+}
+
+#cross{
+	display:block;
+	width:48px;
+	height:48px;
+	float:left;
+	margin-left:100px;
+	background-image:url("controllerpict/batsu48.gif");
+}
+
+-->
+</style>
+
+<script type="text/javascript" src="js/matrixengine-bootstrap.js"></script>
+<script>
+function expandCanvas(canvas) {
+    var b = document.body;
+    var bodyWidth = Math.max(b.clientWidth , 64);
+    var bodyHeight = Math.max(b.clientHeight , 64);
+    var zoomer = window.devicePixelRatio;
+    if(zoomer == undefined){
+        if("MxeUtil" in window && MxeUtil.detectSmartPhone()){
+            zoomer = window.screen.width/bodyWidth;
+        }else{
+            zoomer = 1.0;
+        }
+    }
+    canvas.width=bodyWidth*zoomer;
+	canvas.height=canvas.width*7/10;
+    //canvas.height=bodyHeight*zoomer;
+	
+	
+    //canvas.style.width=bodyWidth*0.5;
+    //canvas.style.height=bodyHeight*0.5;
+	canvas.style.width=bodyWidth*7/10;
+	canvas.style.height=canvas.style.width*9/10;
+
+};
+
+function startMatrixEngine() {
+    var canvas = document.getElementById("matrixengine-canvas");
+    expandCanvas(canvas); //full screen
+    matrixEngine = createMxePlayerWGL(canvas);
+    var mxeProject = createMxeProjectWGL();
+    mxeProject.contentsFile = "js/matrixengine-contents.js";
+    mxeProject.controllerFile = "js/matrixengine-controller-skeleton.js";
+    matrixEngine.setProject(mxeProject);
+    matrixEngine.start();
+};
+
+window.onresize = function() {
+    var canvas = document.getElementById("matrixengine-canvas");
+    expandCanvas(canvas);
+};
+
+window.onload = function() {
+    bootMatrixEngine();
+};
+
+window.onloadmatrixengine = function() {
+    startMatrixEngine();
+};
+
+</script>
+</head>
+
+<body width="100%" height="100%" style="position:relative; margin:0px; padding:0px" onMouseUp="Unable()">
+    <canvas width="640px" height="480px" id="matrixengine-canvas" style="border: none;"></canvas>
+	<div id="controller">
+		<div id="up" class="vertallow" title="foobar up" onMouseDown="Enable(VK_UP)"></div><div>
+		<div id="left" class="sideallow" title="foobar left" onMouseDown="Enable(VK_LEFT)"></div>
+		<div id="right" class="sideallow" title="foobar right" onMouseDown="Enable(VK_RIGHT)"></div><div id="circle" title="foobar circle" onMouseDown="Enable(VK_Z)"></div>
+		<div id="down" class="vertallow" title="foobar down" onMouseDown="Enable(VK_DOWN)"></div><div id="cross" title="foobar cross" onMouseDown="Enable(VK_X)"></div>
+	</div>
+</body>
+
+</html>

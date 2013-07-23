@@ -660,7 +660,7 @@ MxeDefaultController.prototype.registerEventListeners = function() {
     
     track = score.tracks[323];
     score.addEventListener("onexitframe", eventproc.onExitFrame23, this, [10,]);
- 
+    
  	this.contents=contents;
 	this.Room1Score=this.contents.scoresL["Room1Score"];
 	this.WalkerScore=this.contents.scoresL["WalkerScore"];
@@ -672,10 +672,70 @@ MxeDefaultController.prototype.registerEventListeners = function() {
   this.WalkerScore.tracks[0].frame.visible=true;
   
   this.FinalRoom.tracksL["CastBoard"].setPuppet(true);
+  this.FinalRoom.tracksL["CastBoard"].frame.pos=[0,-100,0];
   this.FinalRoom.tracksL["CastBoard"].frame.visible=true;
   
-  console.log(this.FinalRoom);
+  this.FinalRoom.tracksL["StuffInfoBoard"].setPuppet(true);
+  this.FinalRoom.tracksL["StuffInfoBoard"].frame.pos=[0,-100,0];
+  this.FinalRoom.tracksL["StuffInfoBoard"].frame.visible=true;  
 };
+
+MxeDefaultController.eventproc = {};
+
+MxeDefaultController.prototype.Room1Preparetion = function(){　//ID順にソートした部屋
+
+	this.contents.IdSort("Smaller");
+	
+	this.contents.spread(5,this.contents.bagObject.slice(0,20));
+	this.contents.spread(3,this.contents.bagObject.slice(20,40));
+	this.contents.spread(1,this.contents.bagObject.slice(40,60));
+	this.contents.spread(2,this.contents.bagObject.slice(60,80));
+	this.contents.spread(4,this.contents.bagObject.slice(80,100));
+}
+
+MxeDefaultController.prototype.Room2Preparetion = function(){//価格ソート(昇順)
+
+	this.contents.PriceSort("Bigger");
+	
+	this.contents.spread(5,this.contents.bagObject.slice(0,20));
+	this.contents.spread(3,this.contents.bagObject.slice(20,40));
+	this.contents.spread(1,this.contents.bagObject.slice(40,60));
+	this.contents.spread(2,this.contents.bagObject.slice(60,80));
+	this.contents.spread(4,this.contents.bagObject.slice(80,100));
+}
+
+MxeDefaultController.prototype.Room3Preparetion = function(){//価格ソート(降順)
+	
+	this.contents.PriceSort("Smaller");
+	
+	this.contents.spread(5,this.contents.bagObject.slice(0,20));
+	this.contents.spread(3,this.contents.bagObject.slice(20,40));
+	this.contents.spread(1,this.contents.bagObject.slice(40,60));
+	this.contents.spread(2,this.contents.bagObject.slice(60,80));
+	this.contents.spread(4,this.contents.bagObject.slice(80,100));
+}
+
+MxeDefaultController.prototype.Room4Preparetion = function(){//Hueソート(昇順)
+	
+	this.contents.HueSort("Bigger");
+	
+	this.contents.spread(5,this.contents.bagObject.slice(0,20));
+	this.contents.spread(3,this.contents.bagObject.slice(20,40));
+	this.contents.spread(1,this.contents.bagObject.slice(40,60));
+	this.contents.spread(2,this.contents.bagObject.slice(60,80));
+	this.contents.spread(4,this.contents.bagObject.slice(80,100));
+}
+
+MxeDefaultController.prototype.Room5Preparetion = function(){//Hueソート(降順)
+	
+	this.contents.HueSort("Smaller");
+	
+	this.contents.spread(5,this.contents.bagObject.slice(0,20));
+	this.contents.spread(3,this.contents.bagObject.slice(20,40));
+	this.contents.spread(1,this.contents.bagObject.slice(40,60));
+	this.contents.spread(2,this.contents.bagObject.slice(60,80));
+	this.contents.spread(4,this.contents.bagObject.slice(80,100));
+}
 
 const VK_UP=38;
 const VK_DOWN=40;
@@ -690,7 +750,6 @@ var hold={VK_UP:false,VK_DOWN:false,VK_LEFT:false,VK_RIGHT:false,VK_Z:false,VK_X
 
 function Enable(tag){
 	hold[tag]=true;
-	console.log(tag);
 }
 
 function Unable(){
@@ -705,8 +764,6 @@ function Unable(){
 var getKeyState=function(keyCode){
     return hold[keyCode];
 };
-
-MxeDefaultController.eventproc = {};
 
 //=============================================
 // SCRIPT CAST 0
@@ -726,6 +783,8 @@ MxeDefaultController.eventproc.onCastClick0 = function(e) {
   this.WalkerScore.seekFrame(this.WalkerScore.frameLabelPos['Stop']);
   SelectedRoomX=this.WalkerScore.tracks[0].frame.pos[0];
   SelectedRoom=LingeriesRoom;
+  
+  this.Room1Preparetion();
 };
 
 //=============================================
@@ -737,6 +796,8 @@ MxeDefaultController.eventproc.onCastClick1 = function(e) {
   this.WalkerScore.seekFrame(this.WalkerScore.frameLabelPos['Stop']);
   SelectedRoomX=this.WalkerScore.tracks[0].frame.pos[0];
   SelectedRoom=TopsRoom;
+  
+  this.Room2Preparetion();
 };
 
 //=============================================
@@ -748,6 +809,8 @@ MxeDefaultController.eventproc.onCastClick2 = function(e) {
   this.WalkerScore.seekFrame(this.WalkerScore.frameLabelPos['Stop']);
   SelectedRoomX=this.WalkerScore.tracks[0].frame.pos[0];
   SelectedRoom=BottomsRoom;
+  
+  this.Room3Preparetion();
 };
 
 //=============================================
@@ -759,6 +822,8 @@ MxeDefaultController.eventproc.onCastClick3 = function(e) {
   this.WalkerScore.seekFrame(this.WalkerScore.frameLabelPos['Stop']);
   SelectedRoomX=this.WalkerScore.tracks[0].frame.pos[0];
   SelectedRoom=BagsRoom;
+  
+  this.Room4Preparetion();
 };
 
 //=============================================
@@ -770,7 +835,13 @@ MxeDefaultController.eventproc.onCastClick4 = function(e) {
   this.WalkerScore.seekFrame(this.WalkerScore.frameLabelPos['Stop']);
   SelectedRoomX=this.WalkerScore.tracks[0].frame.pos[0];
   SelectedRoom=SundriesRoom;
+  
+  this.Room5Preparetion();
 };
+
+//=============================================
+// SCRIPT CAST 5
+//=============================================
 
 //=============================================
 // SCRIPT CAST 6
@@ -784,18 +855,14 @@ var SeekingState=1; //1:ライン選択、2:ライン内徘徊、3:ボードア�
 
 var keyBuffer = [];
 
-
-
 MxeDefaultController.eventproc.onExitFrame7 = function(e) {
 	var XTranslation=this.WalkerScore.tracks[0].frame.pos[0];
 	if(getKeyState(VK_LEFT)){
-		console.log("VK_LEFT");
 		if(XTranslation>-420){
 			this.WalkerScore.seekFrame(this.WalkerScore.frameLabelPos['MoveToLeft']);
 		}
 	
 	}else if(getKeyState(VK_RIGHT)){
-		console.log("VK_RIGHT");
 		if(XTranslation<420){
 			this.WalkerScore.seekFrame(this.WalkerScore.frameLabelPos['MoveToRight']);
 		}
@@ -807,7 +874,7 @@ MxeDefaultController.eventproc.onExitFrame7 = function(e) {
 //=============================================
 
 MxeDefaultController.eventproc.onExitFrame8 = function(e) {
-  console.log("Init");
+
 };
 
 //=============================================
@@ -959,6 +1026,14 @@ MxeDefaultController.eventproc.onExitFrame17 = function(e) {
 };
 
 //=============================================
+// SCRIPT CAST 18
+//=============================================
+
+//=============================================
+// SCRIPT CAST 19
+//=============================================
+
+//=============================================
 // SCRIPT CAST 20
 //=============================================
 
@@ -977,15 +1052,90 @@ var cast_board_temp_z;
 var Rotation_Total;
 
 var rotation_velocity;
+var InfoUpSpeed=2.5/cast_frame_num;
 
 //=============================================
 // SCRIPT CAST 21
 //=============================================
 
 MxeDefaultController.eventproc.onCastClick21 = function(e) {
-	if(SeekingState == 1) return;
+/*-- original script (1-73) -----------------
+OnEvent CastClick(Score,Track,Button,X,Y: Integer);
+var lx:Float;
+var ly:Float;
+var lz:Float;
+
+var wx:Float;
+var wy:Float;
+var wz:Float;
+
+var Rot:Float;
+var cx,cy,cz:Float;
+begin
+
+	if SeekingState = 1 then
+		Exit;
+	end;
+
+	lx=TrackProperty [ FinalRoom:Track ].Variable.Pos.X;
+	ly=TrackProperty [ FinalRoom:Track ].Variable.Pos.Y;
+	lz=TrackProperty [ FinalRoom:Track ].Variable.Pos.Z;
+
+	LocalToWorld(Score:Track,lx,ly,lz,wx,wy,wz);
+
+	cast_board_temp_x=wx;
+	cast_board_temp_y=wy;
+	cast_board_temp_z=wz;
+
+	if wy>=20 then
+		Rot=TrackProperty[FinalRoom:(Track-1)].Score.Rol.Y;
+	else
+		Rot=TrackProperty[FinalRoom:(Track-2)].Score.Rol.Y;
+	end;
+
+	if Rot>=3 then
+		Rotation_Total=PI/2;
+		TrackProperty[FinalRoom:CastBoard].Variable.Rol.Y=PI;
+	else
+		Rotation_Total=-PI/2;
+		TrackProperty[FinalRoom:CastBoard].Variable.Rol.Y=0;
+	end;
+
+
+
+	lx=TrackProperty [ WalkerScore:0 ].Variable.Pos.X;
+	ly=TrackProperty [ WalkerScore:0 ].Variable.Pos.Y;
+	lz=TrackProperty [ WalkerScore:0 ].Variable.Pos.Z;
+
+	cast_distance_x=lx-wx;
+	cast_distance_y=ly-wy;
+	cast_distance_z=lz-wz+15;
+
+	cast_velocity_x=cast_distance_x/cast_frame_num;
+	cast_velocity_y=cast_distance_y/cast_frame_num;
+	cast_velocity_z=cast_distance_z/cast_frame_num;
+
+	rotation_velocity=Rotation_Total/cast_frame_num;
+
+	cast_count=0;
+
+	TrackProperty [FinalRoom:CastBoard].Variable.Pos.X=wx;
+	TrackProperty [FinalRoom:CastBoard].Variable.Pos.Y=wy;
+	TrackProperty [FinalRoom:CastBoard].Variable.Pos.Z=wz;
+	TrackProperty[WalkerScore:0].Variable.Rol.X=0;
+
+	SeekFrame(FinalRoom:BoardCasting);
+
+	TrackProperty[FinalRoom:StuffInfoBoard].Variable.Pos.X=lx;
+	//TrackProperty[FinalRoom:StuffInfoBoard].Variable.Pos.Y=ly-4;
+	TrackProperty[FinalRoom:StuffInfoBoard].Variable.Pos.Y=ly-6.5;
+	TrackProperty[FinalRoom:StuffInfoBoard].Variable.Pos.Z=lz+7;
+
+	SeekingState = 3;
+end;
+  -- original script (1-73) -----------------*/
+	if(SeekingState == 1 || e.track.cast.sectors[0].material.textureInfo[0].cast.label == "panelsample") return;
 	var l=this.FinalRoom.tracks[e.track.index].frame.pos;
-	console.log(this.FinalRoom.tracks[e.track.index]);
 	var w=new Array(3);
 	w[0]=this.FinalRoom.tracks[e.track.index].frame.worldMatrix[12];
 	w[1]=this.FinalRoom.tracks[e.track.index].frame.worldMatrix[13];
@@ -1012,7 +1162,7 @@ MxeDefaultController.eventproc.onCastClick21 = function(e) {
 	
 	l=this.WalkerScore.tracks[0].frame.pos;
 	cast_distance_x=l[0]-w[0];
-	cast_distance_y=l[1]-w[1];
+	cast_distance_y=l[1]-w[1]+1.5;
 	cast_distance_z=l[2]-w[2]+15;
 	
 	cast_velocity_x=cast_distance_x/cast_frame_num;
@@ -1025,7 +1175,10 @@ MxeDefaultController.eventproc.onCastClick21 = function(e) {
 	this.FinalRoom.tracksL["CastBoard"].frame.pos=w;
 	this.WalkerScore.tracks[0].frame.rot[0]=0;
 	
+	this.FinalRoom.tracksL["CastBoard"].cast.sectors [ 0 ].material.textureInfo [ 0 ].cast = this.FinalRoom.tracksL[e.track.label].cast.sectors [ 0 ].material.textureInfo [ 0 ].cast;
 	this.FinalRoom.seekFrame(this.FinalRoom.frameLabelPos['BoardCasting']);
+	
+	this.FinalRoom.tracksL["StuffInfoBoard"].frame.pos=[l[0],l[1]-6,l[2]+6.5];
 	
 	SeekingState=3;
 };
@@ -1035,7 +1188,6 @@ MxeDefaultController.eventproc.onCastClick21 = function(e) {
 //=============================================
 
 MxeDefaultController.eventproc.onExitFrame22 = function(e) {
-	console.log("Casted");
 };
 
 //=============================================
@@ -1043,6 +1195,38 @@ MxeDefaultController.eventproc.onExitFrame22 = function(e) {
 //=============================================
 
 MxeDefaultController.eventproc.onExitFrame23 = function(e) {
+/*-- original script (1-30) -----------------
+OnEvent ExitFrame(Score,Track: Integer);
+var
+  XTranslation: Float;
+	YTranslation: Float;
+	ZTranslation: Float;
+
+	Rotation:Float;
+begin
+	cast_count=cast_count+1;
+	XTranslation=TrackProperty[FinalRoom:CastBoard].Variable.Pos.X;
+	YTranslation=TrackProperty[FinalRoom:CastBoard].Variable.Pos.Y;
+	ZTranslation=TrackProperty[FinalRoom:CastBoard].Variable.Pos.Z;
+
+	XTranslation = XTranslation + cast_velocity_x;
+	YTranslation = YTranslation + cast_velocity_y;
+	ZTranslation = ZTranslation + cast_velocity_z;
+
+	TrackProperty[FinalRoom:CastBoard].Variable.Pos.X=XTranslation;
+	TrackProperty[FinalRoom:CastBoard].Variable.Pos.Y=YTranslation;
+	TrackProperty[FinalRoom:CastBoard].Variable.Pos.Z=ZTranslation;	
+
+	Rotation=TrackProperty[FinalRoom:CastBoard].Variable.Rol.Y;
+	Rotation=Rotation+rotation_velocity;
+	TrackProperty[FinalRoom:CastBoard].Variable.Rol.Y=Rotation;	
+
+	TrackProperty[FinalRoom:StuffInfoBoard].Variable.Pos.Y=TrackProperty[FinalRoom:StuffInfoBoard].Variable.Pos.Y+InfoUpSpeed;
+	if cast_count=cast_frame_num then
+		SeekFrame(FinalRoom:BoardCasted);
+	end;
+end;
+  -- original script (1-30) -----------------*/
 	++cast_count;
 	var Translation=this.FinalRoom.tracksL["CastBoard"].frame.pos;
 	Translation[0]+=cast_velocity_x;
@@ -1055,6 +1239,7 @@ MxeDefaultController.eventproc.onExitFrame23 = function(e) {
 	Rotation+=rotation_velocity;
 	this.FinalRoom.tracksL["CastBoard"].frame.rot[1]=Rotation;
 	
+	this.FinalRoom.tracksL["StuffInfoBoard"].frame.pos[1]+=InfoUpSpeed;
 	if(cast_count == cast_frame_num){
 		this.FinalRoom.seekFrame(this.FinalRoom.frameLabelPos['BoardCasted']);
 		//SeekingStateChange
@@ -1066,6 +1251,40 @@ MxeDefaultController.eventproc.onExitFrame23 = function(e) {
 //=============================================
 
 MxeDefaultController.eventproc.onExitFrame24 = function(e) {
+/*-- original script (1-32) -----------------
+OnEvent ExitFrame(Score,Track: Integer);
+var
+  XTranslation: Float;
+	YTranslation: Float;
+	ZTranslation: Float;
+
+	Rotation:Float;
+begin
+	cast_count=cast_count+1;
+	XTranslation=TrackProperty[FinalRoom:CastBoard].Variable.Pos.X;
+	YTranslation=TrackProperty[FinalRoom:CastBoard].Variable.Pos.Y;
+	ZTranslation=TrackProperty[FinalRoom:CastBoard].Variable.Pos.Z;
+
+	XTranslation = XTranslation + cast_velocity_x;
+	YTranslation = YTranslation + cast_velocity_y;
+	ZTranslation = ZTranslation + cast_velocity_z;
+
+	TrackProperty[FinalRoom:CastBoard].Variable.Pos.X=XTranslation;
+	TrackProperty[FinalRoom:CastBoard].Variable.Pos.Y=YTranslation;
+	TrackProperty[FinalRoom:CastBoard].Variable.Pos.Z=ZTranslation;	
+
+	Rotation=TrackProperty[FinalRoom:CastBoard].Variable.Rol.Y;
+	Rotation=Rotation+rotation_velocity;
+	TrackProperty[FinalRoom:CastBoard].Variable.Rol.Y=Rotation;
+
+	TrackProperty[FinalRoom:StuffInfoBoard].Variable.Pos.Y=TrackProperty[FinalRoom:StuffInfoBoard].Variable.Pos.Y-InfoUpSpeed;
+	if cast_count=cast_frame_num then
+		SeekFrame(FinalRoom:1);
+		SeekingState = 2;
+		TrackProperty[FinalRoom:StuffInfoBoard].Variable.Pos.Y=-100;
+	end;
+end;
+  -- original script (1-32) -----------------*/
 	++cast_count;
 	var Translation=this.FinalRoom.tracksL["CastBoard"].frame.pos;
 	
@@ -1079,9 +1298,11 @@ MxeDefaultController.eventproc.onExitFrame24 = function(e) {
 	Rotation+=rotation_velocity;
 	this.FinalRoom.tracksL["CastBoard"].frame.rot[1]=Rotation;
 	
+	this.FinalRoom.tracksL["StuffInfoBoard"].frame.pos[1]-=InfoUpSpeed;
 	if(cast_count == cast_frame_num){
 		this.FinalRoom.seekFrame(1);
 		SeekingState=2;
+		this.FinalRoom.tracksL["StuffInfoBoard"].frame.pos[1]=-100;
 	}
 };
 
@@ -1094,7 +1315,7 @@ MxeDefaultController.eventproc.onCastClick25 = function(e) {
 	var l=this.WalkerScore.tracks[0].frame.pos;
 
 	cast_distance_x=w[0]-l[0];
-	cast_distance_y=w[1]-l[1];
+	cast_distance_y=w[1]-l[1]-1.5;
 	cast_distance_z=w[2]-l[2]-15;
 	
 	cast_velocity_x=cast_distance_x/cast_frame_num;
@@ -1128,6 +1349,10 @@ end;
 };
 
 //=============================================
+// SCRIPT CAST 27
+//=============================================
+
+//=============================================
 // SCRIPT CAST 28
 //=============================================
 
@@ -1138,6 +1363,10 @@ MxeDefaultController.eventproc.onExitFrame28 = function(e) {
 	this.WalkerScore.seekFrame(this.WalkerScore.frameLabelPos['FinalRoomStand']);
   }
 };
+
+//=============================================
+// SCRIPT CAST 29
+//=============================================
 
 //=============================================
 // SCRIPT CAST 30
@@ -1152,12 +1381,15 @@ MxeDefaultController.eventproc.onExitFrame30 = function(e) {
 };
 
 //=============================================
+// SCRIPT CAST 31
+//=============================================
+
+//=============================================
 // SCRIPT CAST 32
 //=============================================
 
 MxeDefaultController.eventproc.onExitFrame32 = function(e) {
   this.Room1Score.seekFrame(this.Room1Score.frameLabelPos['FirstState']);
-  
 };
 
 MxePlayer.registerControllerClass(MxeDefaultController);
