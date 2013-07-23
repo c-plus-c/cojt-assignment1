@@ -707,6 +707,8 @@ MxeDefaultController.prototype.Room2Preparetion = function(){//価格ソート(�
 	this.contents.spread(1,this.contents.bagObject.slice(40,60));
 	this.contents.spread(2,this.contents.bagObject.slice(60,80));
 	this.contents.spread(4,this.contents.bagObject.slice(80,100));
+	
+	console.log(this.contents.bagObject);
 }
 
 MxeDefaultController.prototype.Room3Preparetion = function(){//価格ソート(降順)
@@ -727,6 +729,8 @@ MxeDefaultController.prototype.Room4Preparetion = function(){//Hueソート(昇�
 	this.contents.spread(1,this.contents.bagObject.slice(40,60));
 	this.contents.spread(2,this.contents.bagObject.slice(60,80));
 	this.contents.spread(4,this.contents.bagObject.slice(80,100));
+	
+	console.log(this.contents.bagObject);
 }
 
 MxeDefaultController.prototype.Room5Preparetion = function(){//Hueソート(降順)
