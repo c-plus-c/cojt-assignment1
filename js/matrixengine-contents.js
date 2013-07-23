@@ -386,6 +386,25 @@ MxeDefaultContents.prototype.createTextureCasts = function() {
 		this.InfoTexture[i]=tex;
 	}
 	
+	var  roomfile = ["idroom.png","priceroom.png","priceroom.png","hueroom.png","hueroom.png"];
+	this.RoomPlateTexture = new Array(5);
+	for(var i=1;i<=5;i++){
+		var tex = cast = this.createMxeTexture(this,113+i,"roomplate"+i);
+		cast.imageSrc="room_plates/"+roomfile[i-1];
+		cast.presetWidth=256;
+		cast.presetHeight=64;
+		cast.alphaType = MxeMaterial.def.HAS_TRANSPARENT|MxeMaterial.def.HAS_TRANSLUCENT;
+		cast.rotateCenter = F32A([0, 0, 0]);
+		bbinfo = cast.billboardInfo = this.createMxeBillboardInfo(this.createMxeMaterial(), this.createMxeSectorTextureInfo());
+		bbinfo.pos = F32A([0, 0, 0]);
+		bbinfo.siz = F32A([1, 1, 0.0]);
+		bbmat = bbinfo.material;
+		bbmat.color = F32A([1, 1, 1, 1]);
+		bbmat.textureInfo[0].cast = cast;
+
+		this.RoomPlateTexture[i-1]=tex;		
+	}
+	
 	this.InfoMapper = {};
     
 };

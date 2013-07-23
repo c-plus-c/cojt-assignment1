@@ -677,13 +677,18 @@ MxeDefaultController.prototype.registerEventListeners = function() {
   
   this.FinalRoom.tracksL["StuffInfoBoard"].setPuppet(true);
   this.FinalRoom.tracksL["StuffInfoBoard"].frame.pos=[0,-100,0];
-  this.FinalRoom.tracksL["StuffInfoBoard"].frame.visible=true;  
+  this.FinalRoom.tracksL["StuffInfoBoard"].frame.visible=true;
+  
+  this.Room1Score.tracksL["LigeriesPlate"].cast.sectors[0].material.textureInfo[0].cast = this.contents.RoomPlateTexture[0];
+  this.Room1Score.tracksL["TopsPlate"].cast.sectors[0].material.textureInfo[0].cast = this.contents.RoomPlateTexture[1];
+  this.Room1Score.tracksL["BottomsPlate"].cast.sectors[0].material.textureInfo[0].cast = this.contents.RoomPlateTexture[2];
+  this.Room1Score.tracksL["BagsPlate"].cast.sectors[0].material.textureInfo[0].cast = this.contents.RoomPlateTexture[3];
+  this.Room1Score.tracksL["SundriesPlate"].cast.sectors[0].material.textureInfo[0].cast = this.contents.RoomPlateTexture[4];
 };
 
 MxeDefaultController.eventproc = {};
 
 MxeDefaultController.prototype.Room1Preparetion = function(){　//ID順にソートした部屋
-
 	this.contents.IdSort("Smaller");
 	this.contentsInfoMapper={};
 	
@@ -695,7 +700,6 @@ MxeDefaultController.prototype.Room1Preparetion = function(){　//ID順にソー
 }
 
 MxeDefaultController.prototype.Room2Preparetion = function(){//価格ソート(昇順)
-
 	this.contents.PriceSort("Bigger");
 	this.contentsInfoMapper={};
 	this.contents.spread(5,this.contents.bagObject.slice(0,20));
@@ -706,7 +710,6 @@ MxeDefaultController.prototype.Room2Preparetion = function(){//価格ソート(�
 }
 
 MxeDefaultController.prototype.Room3Preparetion = function(){//価格ソート(降順)
-	
 	this.contents.PriceSort("Smaller");
 	this.contentsInfoMapper={};
 	this.contents.spread(5,this.contents.bagObject.slice(0,20));
@@ -717,7 +720,6 @@ MxeDefaultController.prototype.Room3Preparetion = function(){//価格ソート(�
 }
 
 MxeDefaultController.prototype.Room4Preparetion = function(){//Hueソート(昇順)
-	
 	this.contents.HueSort("Bigger");
 	this.contentsInfoMapper={};
 	this.contents.spread(5,this.contents.bagObject.slice(0,20));
@@ -728,7 +730,6 @@ MxeDefaultController.prototype.Room4Preparetion = function(){//Hueソート(昇�
 }
 
 MxeDefaultController.prototype.Room5Preparetion = function(){//Hueソート(降順)
-	
 	this.contents.HueSort("Smaller");
 	this.contentsInfoMapper={};
 	this.contents.spread(5,this.contents.bagObject.slice(0,20));
@@ -1123,38 +1124,6 @@ MxeDefaultController.eventproc.onExitFrame22 = function(e) {
 //=============================================
 
 MxeDefaultController.eventproc.onExitFrame23 = function(e) {
-/*-- original script (1-30) -----------------
-OnEvent ExitFrame(Score,Track: Integer);
-var
-  XTranslation: Float;
-	YTranslation: Float;
-	ZTranslation: Float;
-
-	Rotation:Float;
-begin
-	cast_count=cast_count+1;
-	XTranslation=TrackProperty[FinalRoom:CastBoard].Variable.Pos.X;
-	YTranslation=TrackProperty[FinalRoom:CastBoard].Variable.Pos.Y;
-	ZTranslation=TrackProperty[FinalRoom:CastBoard].Variable.Pos.Z;
-
-	XTranslation = XTranslation + cast_velocity_x;
-	YTranslation = YTranslation + cast_velocity_y;
-	ZTranslation = ZTranslation + cast_velocity_z;
-
-	TrackProperty[FinalRoom:CastBoard].Variable.Pos.X=XTranslation;
-	TrackProperty[FinalRoom:CastBoard].Variable.Pos.Y=YTranslation;
-	TrackProperty[FinalRoom:CastBoard].Variable.Pos.Z=ZTranslation;	
-
-	Rotation=TrackProperty[FinalRoom:CastBoard].Variable.Rol.Y;
-	Rotation=Rotation+rotation_velocity;
-	TrackProperty[FinalRoom:CastBoard].Variable.Rol.Y=Rotation;	
-
-	TrackProperty[FinalRoom:StuffInfoBoard].Variable.Pos.Y=TrackProperty[FinalRoom:StuffInfoBoard].Variable.Pos.Y+InfoUpSpeed;
-	if cast_count=cast_frame_num then
-		SeekFrame(FinalRoom:BoardCasted);
-	end;
-end;
-  -- original script (1-30) -----------------*/
 	++cast_count;
 	var Translation=this.FinalRoom.tracksL["CastBoard"].frame.pos;
 	Translation[0]+=cast_velocity_x;
@@ -1179,40 +1148,6 @@ end;
 //=============================================
 
 MxeDefaultController.eventproc.onExitFrame24 = function(e) {
-/*-- original script (1-32) -----------------
-OnEvent ExitFrame(Score,Track: Integer);
-var
-  XTranslation: Float;
-	YTranslation: Float;
-	ZTranslation: Float;
-
-	Rotation:Float;
-begin
-	cast_count=cast_count+1;
-	XTranslation=TrackProperty[FinalRoom:CastBoard].Variable.Pos.X;
-	YTranslation=TrackProperty[FinalRoom:CastBoard].Variable.Pos.Y;
-	ZTranslation=TrackProperty[FinalRoom:CastBoard].Variable.Pos.Z;
-
-	XTranslation = XTranslation + cast_velocity_x;
-	YTranslation = YTranslation + cast_velocity_y;
-	ZTranslation = ZTranslation + cast_velocity_z;
-
-	TrackProperty[FinalRoom:CastBoard].Variable.Pos.X=XTranslation;
-	TrackProperty[FinalRoom:CastBoard].Variable.Pos.Y=YTranslation;
-	TrackProperty[FinalRoom:CastBoard].Variable.Pos.Z=ZTranslation;	
-
-	Rotation=TrackProperty[FinalRoom:CastBoard].Variable.Rol.Y;
-	Rotation=Rotation+rotation_velocity;
-	TrackProperty[FinalRoom:CastBoard].Variable.Rol.Y=Rotation;
-
-	TrackProperty[FinalRoom:StuffInfoBoard].Variable.Pos.Y=TrackProperty[FinalRoom:StuffInfoBoard].Variable.Pos.Y-InfoUpSpeed;
-	if cast_count=cast_frame_num then
-		SeekFrame(FinalRoom:1);
-		SeekingState = 2;
-		TrackProperty[FinalRoom:StuffInfoBoard].Variable.Pos.Y=-100;
-	end;
-end;
-  -- original script (1-32) -----------------*/
 	++cast_count;
 	var Translation=this.FinalRoom.tracksL["CastBoard"].frame.pos;
 	
