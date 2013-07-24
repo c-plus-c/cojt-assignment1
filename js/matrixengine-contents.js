@@ -461,6 +461,7 @@ MxeDefaultContents.prototype.InitAllPanels = function(){
 	for(var i=0;i<5;i++){
 		for(var j=0;j<40;j++){
 			var delta=0;
+			delta=(state==0)?0:20;
 			this.scores[3].tracksL[ "Panel"+(startLine[i]+delta+panelPointer)].cast.sectors[0].material.textureInfo[0].cast=this.textureCasts[13];
 			panelPointer = (state==1) ? panelPointer+1:panelPointer;
 			state=(state+1)%2;
