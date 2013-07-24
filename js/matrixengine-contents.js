@@ -462,13 +462,15 @@ MxeDefaultContents.prototype.spread = function(line,dataArray){
 
 MxeDefaultContents.prototype.InitAllPanels = function(){
 	var startLine = [1,41,81,121,161];
-	var state=0;
-	var panelPointer=0;
 	for(var i=0;i<5;i++){
+		var state=0;
+		var panelPointer=0;
 		for(var j=0;j<40;j++){
 			var delta=0;
 			delta=(state==0)?0:20;
-			this.scores[3].tracksL[ "Panel"+(startLine[i]+delta+panelPointer)].cast.sectors[0].material.textureInfo[0].cast=this.textureCasts[13];
+			console.log("Panel"+(startLine[i]+delta+panelPointer));
+			console.log(this.scores[3].tracksL[ "Panel"+(startLine[i]+delta+panelPointer)]);
+			this.scores[3].tracksL[ "Panel"+(startLine[i]+delta+panelPointer)].cast.sectors[0].material.textureInfo[0]=this.textureCasts[13];
 			panelPointer = (state==1) ? panelPointer+1:panelPointer;
 			state=(state+1)%2;
 		}
