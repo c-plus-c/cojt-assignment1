@@ -689,9 +689,9 @@ MxeDefaultController.prototype.registerEventListeners = function() {
 MxeDefaultController.eventproc = {};
 
 MxeDefaultController.prototype.Room1Preparetion = function(){　//ID順にソートした部屋
+	this.contents.InitAllPanels();
 	this.contents.IdSort("Smaller");
 	this.contentsInfoMapper={};
-	this.contents.InitAllPanels();
 	this.contents.spread(5,this.contents.bagObject.slice(0,20));
 	this.contents.spread(3,this.contents.bagObject.slice(20,40));
 	this.contents.spread(1,this.contents.bagObject.slice(40,60));
@@ -700,9 +700,9 @@ MxeDefaultController.prototype.Room1Preparetion = function(){　//ID順にソー
 }
 
 MxeDefaultController.prototype.Room2Preparetion = function(){//価格ソート(昇順)
+	this.contents.InitAllPanels();
 	this.contents.PriceSort("Bigger");
 	this.contentsInfoMapper={};
-	this.contents.InitAllPanels();
 	this.contents.spread(5,this.contents.bagObject.slice(0,20));
 	this.contents.spread(3,this.contents.bagObject.slice(20,40));
 	this.contents.spread(1,this.contents.bagObject.slice(40,60));
@@ -713,9 +713,9 @@ MxeDefaultController.prototype.Room2Preparetion = function(){//価格ソート(�
 }
 
 MxeDefaultController.prototype.Room3Preparetion = function(){//Hueソート(昇順)
+	this.contents.InitAllPanels();
 	this.contents.HueSort("Bigger");
 	this.contentsInfoMapper={};
-	this.contents.InitAllPanels();
 	this.contents.spread(5,this.contents.bagObject.slice(0,20));
 	this.contents.spread(3,this.contents.bagObject.slice(20,40));
 	this.contents.spread(1,this.contents.bagObject.slice(40,60));
@@ -724,9 +724,9 @@ MxeDefaultController.prototype.Room3Preparetion = function(){//Hueソート(昇�
 }
 
 MxeDefaultController.prototype.Room4Preparetion = function(){//シャッフル
+	this.contents.InitAllPanels();
 	this.contents.Shuffle();
 	this.contentsInfoMapper={};
-	this.contents.InitAllPanels();
 	this.contents.spread(5,this.contents.bagObject.slice(0,20));
 	this.contents.spread(3,this.contents.bagObject.slice(20,40));
 	this.contents.spread(1,this.contents.bagObject.slice(40,60));
