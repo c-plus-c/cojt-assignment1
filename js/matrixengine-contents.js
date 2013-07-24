@@ -386,7 +386,7 @@ MxeDefaultContents.prototype.createTextureCasts = function() {
 		this.InfoTexture[i]=tex;
 	}
 	
-	var  roomfile = ["idroom.png","priceroom.png","priceroom.png","hueroom.png","hueroom.png"];
+	var  roomfile = ["idroom.png","priceroom.png","hueroom.png","shuffle.png","uc.png"];
 	this.RoomPlateTexture = new Array(5);
 	for(var i=1;i<=5;i++){
 		var tex = cast = this.createMxeTexture(this,113+i,"roomplate"+i);
@@ -437,6 +437,12 @@ MxeDefaultContents.prototype.PriceSort = function(Option){
 		}else{
 			return (a.price > b.price ? 1 : -1);
 		}
+	});
+};
+
+MxeDefaultContents.prototype.Shuffle = function(){
+	this.bagObject.sort(function(){
+		return Math.random() - 0.5;
 	});
 };
 

@@ -712,8 +712,8 @@ MxeDefaultController.prototype.Room2Preparetion = function(){//価格ソート(�
 	console.log(this.contents.bagObject);
 }
 
-MxeDefaultController.prototype.Room3Preparetion = function(){//価格ソート(降順)
-	this.contents.PriceSort("Smaller");
+MxeDefaultController.prototype.Room3Preparetion = function(){//Hueソート(昇順)
+	this.contents.HueSort("Bigger");
 	this.contentsInfoMapper={};
 	this.contents.InitAllPanels();
 	this.contents.spread(5,this.contents.bagObject.slice(0,20));
@@ -723,8 +723,8 @@ MxeDefaultController.prototype.Room3Preparetion = function(){//価格ソート(�
 	this.contents.spread(4,this.contents.bagObject.slice(80,100));
 }
 
-MxeDefaultController.prototype.Room4Preparetion = function(){//Hueソート(昇順)
-	this.contents.HueSort("Bigger");
+MxeDefaultController.prototype.Room4Preparetion = function(){//シャッフル
+	this.contents.Shuffle();
 	this.contentsInfoMapper={};
 	this.contents.InitAllPanels();
 	this.contents.spread(5,this.contents.bagObject.slice(0,20));
@@ -736,15 +736,9 @@ MxeDefaultController.prototype.Room4Preparetion = function(){//Hueソート(昇�
 	console.log(this.contents.bagObject);
 }
 
-MxeDefaultController.prototype.Room5Preparetion = function(){//Hueソート(降順)
-	this.contents.HueSort("Smaller");
+MxeDefaultController.prototype.Room5Preparetion = function(){//何も置かない
 	this.contentsInfoMapper={};
 	this.contents.InitAllPanels();
-	this.contents.spread(5,this.contents.bagObject.slice(0,20));
-	this.contents.spread(3,this.contents.bagObject.slice(20,40));
-	this.contents.spread(1,this.contents.bagObject.slice(40,60));
-	this.contents.spread(2,this.contents.bagObject.slice(60,80));
-	this.contents.spread(4,this.contents.bagObject.slice(80,100));
 }
 
 const VK_UP=38;
