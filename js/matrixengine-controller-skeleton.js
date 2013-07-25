@@ -684,6 +684,14 @@ MxeDefaultController.prototype.registerEventListeners = function() {
   this.Room1Score.tracksL["BottomsPlate"].cast.sectors[0].material.textureInfo[0].cast = this.contents.RoomPlateTexture[2];
   this.Room1Score.tracksL["BagsPlate"].cast.sectors[0].material.textureInfo[0].cast = this.contents.RoomPlateTexture[3];
   this.Room1Score.tracksL["SundriesPlate"].cast.sectors[0].material.textureInfo[0].cast = this.contents.RoomPlateTexture[4];
+  
+	document.getElementById("up").setAttribute("title","このボタンは現在使えません");
+	document.getElementById("down").setAttribute("title","このボタンは現在使えません");
+	document.getElementById("left").setAttribute("title","左のドアの前へ移動します");
+	document.getElementById("right").setAttribute("title","右のドアの前へ移動します");
+	document.getElementById("cross").setAttribute("title","このボタンは現在使えません");
+	document.getElementById("circle").setAttribute("title","このボタンは現在使えません");
+	document.getElementById("matrixengine-canvas").setAttribute("title","ドアをクリックすると入ることができます");
 };
 
 MxeDefaultController.eventproc = {};
@@ -950,6 +958,14 @@ MxeDefaultController.eventproc.onExitFrame13 = function(e) {
 	this.Room1Score.seekFrame(this.Room1Score.frameLabelPos['FirstState']);
 	this.WalkerScore.seekFrame(this.WalkerScore.frameLabelPos['FinalRoomStand']);
 	this.RootScore.seekFrame(this.RootScore.frameLabelPos['FinalRoom']);
+	
+	document.getElementById("up").setAttribute("title","このボタンは現在使えません");
+	document.getElementById("down").setAttribute("title","このボタンは現在使えません");
+	document.getElementById("left").setAttribute("title","左の商品閲覧ラインへ移動します");
+	document.getElementById("right").setAttribute("title","右の商品閲覧ラインへ移動します");
+	document.getElementById("cross").setAttribute("title","ドアの選択部屋へ戻ります");
+	document.getElementById("circle").setAttribute("title","前にある商品閲覧ラインに入ります");
+	document.getElementById("matrixengine-canvas").setAttribute("title","クリックしても何もできません");
   }
 };
 
@@ -1012,6 +1028,13 @@ MxeDefaultController.eventproc.onExitFrame16 = function(e) {
   if(this.WalkerScore.tracks[0].frame.pos[2]>=30){
 	this.WalkerScore.tracks[0].frame.pos[2]=30;
 	this.WalkerScore.seekFrame(this.WalkerScore.frameLabelPos['LineWalk']);
+	document.getElementById("up").setAttribute("title","奥へ進みます");
+	document.getElementById("down").setAttribute("title","手前に進みます");
+	document.getElementById("left").setAttribute("title","首を上に振ります");
+	document.getElementById("right").setAttribute("title","首を下に振ります");
+	document.getElementById("cross").setAttribute("title","この商品閲覧ラインから出ます");
+	document.getElementById("circle").setAttribute("title","このボタンは現在使えません");
+	document.getElementById("matrixengine-canvas").setAttribute("title","商品のパネルをクリックすると詳細を見ることができます");
   }
 };
 
@@ -1131,7 +1154,6 @@ MxeDefaultController.eventproc.onCastClick21 = function(e) {
 	this.FinalRoom.tracksL["CastBoard"].cast.sectors [ 0 ].material.textureInfo [ 0 ].cast = this.FinalRoom.tracksL[e.track.label].cast.sectors [ 0 ].material.textureInfo [ 0 ].cast;
 	this.FinalRoom.seekFrame(this.FinalRoom.frameLabelPos['BoardCasting']);
 
-	console.log(this.contents.InfoMapper);
 	this.FinalRoom.tracksL["StuffInfoBoard"].cast.sectors[0].material.textureInfo[0].cast = this.contents.InfoTexture[this.contents.InfoMapper[e.track.index]-1];
 	this.FinalRoom.tracksL["StuffInfoBoard"].frame.pos=[l[0],l[1]-6,l[2]+6.5];
 	
@@ -1166,6 +1188,13 @@ MxeDefaultController.eventproc.onExitFrame23 = function(e) {
 	if(cast_count == cast_frame_num){
 		this.FinalRoom.seekFrame(this.FinalRoom.frameLabelPos['BoardCasted']);
 		//SeekingStateChange
+		document.getElementById("up").setAttribute("title","このボタンは現在使えません");
+		document.getElementById("down").setAttribute("title","このボタンは現在使えません");
+		document.getElementById("left").setAttribute("title","このボタンは現在使えません");
+		document.getElementById("right").setAttribute("title","このボタンは現在使えません");
+		document.getElementById("cross").setAttribute("title","このボタンは現在使えません");
+		document.getElementById("circle").setAttribute("title","このボタンは現在使えません");
+		document.getElementById("matrixengine-canvas").setAttribute("title","もう一度パネルをクリックすると元に戻ります");
 	}
 };
 
@@ -1193,6 +1222,13 @@ MxeDefaultController.eventproc.onExitFrame24 = function(e) {
 		SeekingState=2;
 		this.FinalRoom.tracksL["StuffInfoBoard"].frame.pos[1]=-100;
 		this.FinalRoom.tracksL["CastBoard"].frame.pos[1]=-100;
+		document.getElementById("up").setAttribute("title","奥へ進みます");
+		document.getElementById("down").setAttribute("title","手前に進みます");
+		document.getElementById("left").setAttribute("title","首を上に振ります");
+		document.getElementById("right").setAttribute("title","首を下に振ります");
+		document.getElementById("cross").setAttribute("title","この商品閲覧ラインから出ます");
+		document.getElementById("circle").setAttribute("title","このボタンは現在使えません");
+		document.getElementById("matrixengine-canvas").setAttribute("title","商品のパネルをクリックすると詳細を見ることができます");
 	}
 };
 
@@ -1251,6 +1287,13 @@ MxeDefaultController.eventproc.onExitFrame28 = function(e) {
   if(this.WalkerScore.tracks[0].frame.pos[2]<=-50){
 	this.WalkerScore.tracks[0].frame.pos[2]=-50;
 	this.WalkerScore.seekFrame(this.WalkerScore.frameLabelPos['FinalRoomStand']);
+	document.getElementById("up").setAttribute("title","このボタンは現在使えません");
+	document.getElementById("down").setAttribute("title","このボタンは現在使えません");
+	document.getElementById("left").setAttribute("title","左の商品閲覧ラインの前へ移動します");
+	document.getElementById("right").setAttribute("title","右の商品閲覧ラインの前へ移動します");
+	document.getElementById("cross").setAttribute("title","ドアの選択部屋へ戻ります");
+	document.getElementById("circle").setAttribute("title","前にある商品閲覧ラインに入ります");
+	document.getElementById("matrixengine-canvas").setAttribute("title","クリックしても何も起きません");
   }
 };
 
@@ -1267,6 +1310,13 @@ MxeDefaultController.eventproc.onExitFrame30 = function(e) {
   if(this.WalkerScore.tracks[0].frame.pos[2]<=-170){
 	this.WalkerScore.tracks[0].frame.pos[2]=-170;
 	this.WalkerScore.seekFrame(this.WalkerScore.frameLabelPos['NormalRun']);
+	document.getElementById("up").setAttribute("title","このボタンは現在使えません");
+	document.getElementById("down").setAttribute("title","このボタンは現在使えません");
+	document.getElementById("left").setAttribute("title","左のドアの前へ移動します");
+	document.getElementById("right").setAttribute("title","右のドアの前へ移動します");
+	document.getElementById("cross").setAttribute("title","このボタンは現在使えません");
+	document.getElementById("circle").setAttribute("title","このボタンは現在使えません");
+	document.getElementById("matrixengine-canvas").setAttribute("title","ドアをクリックすると入ることができます");
   }
 };
 
