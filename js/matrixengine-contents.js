@@ -405,6 +405,77 @@ MxeDefaultContents.prototype.createTextureCasts = function() {
 		this.RoomPlateTexture[i-1]=tex;		
 	}
 	
+	this.IDPlateTexture = new Array(5);
+	for(var i=1;i<=5;i++){
+		var tex = cast = this.createMxeTexture(this,118+i,"GenrePlate"+i);
+		cast.imageSrc="genreplate/id_"+i+".png";
+		cast.presetWidth=512;
+		cast.presetHeight=512;
+		cast.alphaType = MxeMaterial.def.HAS_TRANSPARENT|MxeMaterial.def.HAS_TRANSLUCENT;
+		cast.rotateCenter = F32A([0, 0, 0]);
+		bbinfo = cast.billboardInfo = this.createMxeBillboardInfo(this.createMxeMaterial(), this.createMxeSectorTextureInfo());
+		bbinfo.pos = F32A([0, 0, 0]);
+		bbinfo.siz = F32A([1, 1, 0.0]);
+		bbmat = bbinfo.material;
+		bbmat.color = F32A([1, 1, 1, 1]);
+		bbmat.textureInfo[0].cast = cast;
+		
+		this.IDPlateTexture[i-1]=tex;
+	}
+	
+	this.PricePlateTexture = new Array(5);
+	for(var i=1;i<=5;i++){
+		var tex = cast = this.createMxeTexture(this,123+i,"GenrePlate"+i);
+		cast.imageSrc="genreplate/price_"+i+".png";
+		cast.presetWidth=512;
+		cast.presetHeight=512;
+		cast.alphaType = MxeMaterial.def.HAS_TRANSPARENT|MxeMaterial.def.HAS_TRANSLUCENT;
+		cast.rotateCenter = F32A([0, 0, 0]);
+		bbinfo = cast.billboardInfo = this.createMxeBillboardInfo(this.createMxeMaterial(), this.createMxeSectorTextureInfo());
+		bbinfo.pos = F32A([0, 0, 0]);
+		bbinfo.siz = F32A([1, 1, 0.0]);
+		bbmat = bbinfo.material;
+		bbmat.color = F32A([1, 1, 1, 1]);
+		bbmat.textureInfo[0].cast = cast;
+		
+		this.PricePlateTexture[i-1]=tex;
+	}
+	
+	this.HuePlateTexture = new Array(5);
+	for(var i=1;i<=5;i++){
+		var tex = cast = this.createMxeTexture(this,128+i,"GenrePlate"+i);
+		cast.imageSrc="genreplate/hue_"+i+".png";
+		cast.presetWidth=512;
+		cast.presetHeight=512;
+		cast.alphaType = MxeMaterial.def.HAS_TRANSPARENT|MxeMaterial.def.HAS_TRANSLUCENT;
+		cast.rotateCenter = F32A([0, 0, 0]);
+		bbinfo = cast.billboardInfo = this.createMxeBillboardInfo(this.createMxeMaterial(), this.createMxeSectorTextureInfo());
+		bbinfo.pos = F32A([0, 0, 0]);
+		bbinfo.siz = F32A([1, 1, 0.0]);
+		bbmat = bbinfo.material;
+		bbmat.color = F32A([1, 1, 1, 1]);
+		bbmat.textureInfo[0].cast = cast;
+		
+		this.HuePlateTexture[i-1]=tex;
+	}
+	
+	{
+		var tex = cast = this.createMxeTexture(this,140+i,"GenrePlate"+i);
+		cast.imageSrc="genreplate/shuffledgenre.png";
+		cast.presetWidth=512;
+		cast.presetHeight=512;
+		cast.alphaType = MxeMaterial.def.HAS_TRANSPARENT|MxeMaterial.def.HAS_TRANSLUCENT;
+		cast.rotateCenter = F32A([0, 0, 0]);
+		bbinfo = cast.billboardInfo = this.createMxeBillboardInfo(this.createMxeMaterial(), this.createMxeSectorTextureInfo());
+		bbinfo.pos = F32A([0, 0, 0]);
+		bbinfo.siz = F32A([1, 1, 0.0]);
+		bbmat = bbinfo.material;
+		bbmat.color = F32A([1, 1, 1, 1]);
+		bbmat.textureInfo[0].cast = cast;
+		
+		this.ShuffledPlateTexture=tex;
+	}	
+	
 	this.InfoMapper = {};
     
 };
@@ -459,6 +530,12 @@ MxeDefaultContents.prototype.spread = function(line,dataArray){
 		state=(state+1)%2;
 	}
 };
+
+MxeDefaultContents.prototype.InitAllGenrePlates = function(){
+	for(var i=1;i<=5;i++){
+		this.scores[3].tracksL["R"+i+"Plate"].cast.sectors[0].material.textureInfo[0].cast = this.textureCasts[12];
+	}
+}
 
 MxeDefaultContents.prototype.InitAllPanels = function(){
 	var startLine = [1,41,81,121,161];

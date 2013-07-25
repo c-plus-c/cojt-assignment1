@@ -690,6 +690,7 @@ MxeDefaultController.eventproc = {};
 
 MxeDefaultController.prototype.Room1Preparetion = function(){　//ID順にソートした部屋
 	this.contents.InitAllPanels();
+	this.contents.InitAllPanels();
 	this.contents.IdSort("Smaller");
 	this.contentsInfoMapper={};
 	this.contents.spread(5,this.contents.bagObject.slice(0,20));
@@ -697,9 +698,15 @@ MxeDefaultController.prototype.Room1Preparetion = function(){　//ID順にソー
 	this.contents.spread(1,this.contents.bagObject.slice(40,60));
 	this.contents.spread(2,this.contents.bagObject.slice(60,80));
 	this.contents.spread(4,this.contents.bagObject.slice(80,100));
+	this.FinalRoom.tracksL["R5Plate"].cast.sectors[0].material.textureInfo[0].cast=this.contents.IDPlateTexture[0];
+	this.FinalRoom.tracksL["R3Plate"].cast.sectors[0].material.textureInfo[0].cast=this.contents.IDPlateTexture[1];
+	this.FinalRoom.tracksL["R1Plate"].cast.sectors[0].material.textureInfo[0].cast=this.contents.IDPlateTexture[2];
+	this.FinalRoom.tracksL["R2Plate"].cast.sectors[0].material.textureInfo[0].cast=this.contents.IDPlateTexture[3];
+	this.FinalRoom.tracksL["R4Plate"].cast.sectors[0].material.textureInfo[0].cast=this.contents.IDPlateTexture[4];
 }
 
 MxeDefaultController.prototype.Room2Preparetion = function(){//価格ソート(昇順)
+	this.contents.InitAllPanels();
 	this.contents.InitAllPanels();
 	this.contents.PriceSort("Smaller");
 	this.contentsInfoMapper={};
@@ -709,10 +716,15 @@ MxeDefaultController.prototype.Room2Preparetion = function(){//価格ソート(�
 	this.contents.spread(2,this.contents.bagObject.slice(60,80));
 	this.contents.spread(4,this.contents.bagObject.slice(80,100));
 	
-	console.log(this.contents.bagObject);
+	this.FinalRoom.tracksL["R5Plate"].cast.sectors[0].material.textureInfo[0].cast=this.contents.PricePlateTexture[0];
+	this.FinalRoom.tracksL["R3Plate"].cast.sectors[0].material.textureInfo[0].cast=this.contents.PricePlateTexture[1];
+	this.FinalRoom.tracksL["R1Plate"].cast.sectors[0].material.textureInfo[0].cast=this.contents.PricePlateTexture[2];
+	this.FinalRoom.tracksL["R2Plate"].cast.sectors[0].material.textureInfo[0].cast=this.contents.PricePlateTexture[3];
+	this.FinalRoom.tracksL["R4Plate"].cast.sectors[0].material.textureInfo[0].cast=this.contents.PricePlateTexture[4];
 }
 
 MxeDefaultController.prototype.Room3Preparetion = function(){//Hueソート(昇順)
+	this.contents.InitAllGenrePlates();
 	this.contents.InitAllPanels();
 	this.contents.HueSort("Smaller");
 	this.contentsInfoMapper={};
@@ -721,9 +733,16 @@ MxeDefaultController.prototype.Room3Preparetion = function(){//Hueソート(昇�
 	this.contents.spread(1,this.contents.bagObject.slice(40,60));
 	this.contents.spread(2,this.contents.bagObject.slice(60,80));
 	this.contents.spread(4,this.contents.bagObject.slice(80,100));
+	
+	this.FinalRoom.tracksL["R5Plate"].cast.sectors[0].material.textureInfo[0].cast=this.contents.HuePlateTexture[0];
+	this.FinalRoom.tracksL["R3Plate"].cast.sectors[0].material.textureInfo[0].cast=this.contents.HuePlateTexture[1];
+	this.FinalRoom.tracksL["R1Plate"].cast.sectors[0].material.textureInfo[0].cast=this.contents.HuePlateTexture[2];
+	this.FinalRoom.tracksL["R2Plate"].cast.sectors[0].material.textureInfo[0].cast=this.contents.HuePlateTexture[3];
+	this.FinalRoom.tracksL["R4Plate"].cast.sectors[0].material.textureInfo[0].cast=this.contents.HuePlateTexture[4];
 }
 
 MxeDefaultController.prototype.Room4Preparetion = function(){//シャッフル
+	this.contents.InitAllGenrePlates();
 	this.contents.InitAllPanels();
 	this.contents.Shuffle();
 	this.contentsInfoMapper={};
@@ -733,10 +752,15 @@ MxeDefaultController.prototype.Room4Preparetion = function(){//シャッフル
 	this.contents.spread(2,this.contents.bagObject.slice(60,80));
 	this.contents.spread(4,this.contents.bagObject.slice(80,100));
 	
-	console.log(this.contents.bagObject);
+	this.FinalRoom.tracksL["R5Plate"].cast.sectors[0].material.textureInfo[0].cast=this.contents.ShuffledPlateTexture;
+	this.FinalRoom.tracksL["R3Plate"].cast.sectors[0].material.textureInfo[0].cast=this.contents.ShuffledPlateTexture;
+	this.FinalRoom.tracksL["R1Plate"].cast.sectors[0].material.textureInfo[0].cast=this.contents.ShuffledPlateTexture;
+	this.FinalRoom.tracksL["R2Plate"].cast.sectors[0].material.textureInfo[0].cast=this.contents.ShuffledPlateTexture;
+	this.FinalRoom.tracksL["R4Plate"].cast.sectors[0].material.textureInfo[0].cast=this.contents.ShuffledPlateTexture;
 }
 
 MxeDefaultController.prototype.Room5Preparetion = function(){//何も置かない
+	this.contents.InitAllPanels();
 	this.contentsInfoMapper={};
 	this.contents.InitAllPanels();
 }
