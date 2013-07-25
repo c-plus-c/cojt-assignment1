@@ -768,7 +768,7 @@ MxeDefaultController.prototype.Room4Preparetion = function(){//シャッフル
 }
 
 MxeDefaultController.prototype.Room5Preparetion = function(){//何も置かない
-	this.contents.InitAllPanels();
+	this.contents.InitAllGenrePlates();
 	this.contentsInfoMapper={};
 	this.contents.InitAllPanels();
 }
