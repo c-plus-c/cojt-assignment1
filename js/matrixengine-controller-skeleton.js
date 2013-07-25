@@ -805,6 +805,8 @@ var getKeyState=function(keyCode){
 // SCRIPT CAST 0
 //=============================================
 
+var SeekingState=1; //1:ライン選択、2:ライン内徘徊、3:ボードアクションステート
+
 var SelectedRoomX=0;
 var SelectedRoom=1;
 
@@ -815,11 +817,11 @@ const BagsRoom=4;
 const SundriesRoom=5;
 
 MxeDefaultController.eventproc.onCastClick0 = function(e) {
+	if(SeekingState==4) return;
   this.Room1Score.seekFrame(this.Room1Score.frameLabelPos['SelectLingeries']);
   this.WalkerScore.seekFrame(this.WalkerScore.frameLabelPos['Stop']);
   SelectedRoomX=this.WalkerScore.tracks[0].frame.pos[0];
   SelectedRoom=LingeriesRoom;
-  
   this.Room1Preparetion();
 };
 
@@ -828,6 +830,7 @@ MxeDefaultController.eventproc.onCastClick0 = function(e) {
 //=============================================
 
 MxeDefaultController.eventproc.onCastClick1 = function(e) {
+	if(SeekingState==4) return;
   this.Room1Score.seekFrame(this.Room1Score.frameLabelPos['SelectTops']);
   this.WalkerScore.seekFrame(this.WalkerScore.frameLabelPos['Stop']);
   SelectedRoomX=this.WalkerScore.tracks[0].frame.pos[0];
@@ -841,6 +844,7 @@ MxeDefaultController.eventproc.onCastClick1 = function(e) {
 //=============================================
 
 MxeDefaultController.eventproc.onCastClick2 = function(e) {
+	if(SeekingState==4) return;
   this.Room1Score.seekFrame(this.Room1Score.frameLabelPos['SelectBottoms']);
   this.WalkerScore.seekFrame(this.WalkerScore.frameLabelPos['Stop']);
   SelectedRoomX=this.WalkerScore.tracks[0].frame.pos[0];
@@ -854,6 +858,7 @@ MxeDefaultController.eventproc.onCastClick2 = function(e) {
 //=============================================
 
 MxeDefaultController.eventproc.onCastClick3 = function(e) {
+	if(SeekingState==4) return;
   this.Room1Score.seekFrame(this.Room1Score.frameLabelPos['SelectBags']);
   this.WalkerScore.seekFrame(this.WalkerScore.frameLabelPos['Stop']);
   SelectedRoomX=this.WalkerScore.tracks[0].frame.pos[0];
@@ -867,6 +872,7 @@ MxeDefaultController.eventproc.onCastClick3 = function(e) {
 //=============================================
 
 MxeDefaultController.eventproc.onCastClick4 = function(e) {
+	if(SeekingState==4) return;
   this.Room1Score.seekFrame(this.Room1Score.frameLabelPos['SelectSundries']);
   this.WalkerScore.seekFrame(this.WalkerScore.frameLabelPos['Stop']);
   SelectedRoomX=this.WalkerScore.tracks[0].frame.pos[0];
@@ -883,7 +889,7 @@ MxeDefaultController.eventproc.onCastClick4 = function(e) {
 // SCRIPT CAST 6
 //=============================================
 
-var SeekingState=1; //1:ライン選択、2:ライン内徘徊、3:ボードアクションステート
+
 
 //=============================================
 // SCRIPT CAST 7
@@ -895,11 +901,13 @@ MxeDefaultController.eventproc.onExitFrame7 = function(e) {
 	var XTranslation=this.WalkerScore.tracks[0].frame.pos[0];
 	if(getKeyState(VK_LEFT)){
 		if(XTranslation>-420){
+			SeekingState=4;
 			this.WalkerScore.seekFrame(this.WalkerScore.frameLabelPos['MoveToLeft']);
 		}
 	
 	}else if(getKeyState(VK_RIGHT)){
 		if(XTranslation<420){
+			SeekingState=4;
 			this.WalkerScore.seekFrame(this.WalkerScore.frameLabelPos['MoveToRight']);
 		}
 	}
@@ -936,6 +944,7 @@ MxeDefaultController.eventproc.onExitFrame10 = function(e) {
 MxeDefaultController.eventproc.onExitFrame11 = function(e) {
   this.WalkerScore.tracks[0].frame.pos[0]-=10;
   this.WalkerScore.seekFrame(this.WalkerScore.frameLabelPos['NormalRun']);
+  SeekingState=1;
 };
 
 //=============================================
@@ -945,6 +954,7 @@ MxeDefaultController.eventproc.onExitFrame11 = function(e) {
 MxeDefaultController.eventproc.onExitFrame12 = function(e) {
   this.WalkerScore.tracks[0].frame.pos[0]+=10;
   this.WalkerScore.seekFrame(this.WalkerScore.frameLabelPos['NormalRun']);
+  SeekingState=1;
 };
 
 //=============================================
