@@ -701,7 +701,7 @@ MxeDefaultController.prototype.Room1Preparetion = function(){　//ID順にソー
 
 MxeDefaultController.prototype.Room2Preparetion = function(){//価格ソート(昇順)
 	this.contents.InitAllPanels();
-	this.contents.PriceSort("Bigger");
+	this.contents.PriceSort("Smaller");
 	this.contentsInfoMapper={};
 	this.contents.spread(5,this.contents.bagObject.slice(0,20));
 	this.contents.spread(3,this.contents.bagObject.slice(20,40));
@@ -714,7 +714,7 @@ MxeDefaultController.prototype.Room2Preparetion = function(){//価格ソート(�
 
 MxeDefaultController.prototype.Room3Preparetion = function(){//Hueソート(昇順)
 	this.contents.InitAllPanels();
-	this.contents.HueSort("Bigger");
+	this.contents.HueSort("Smaller");
 	this.contentsInfoMapper={};
 	this.contents.spread(5,this.contents.bagObject.slice(0,20));
 	this.contents.spread(3,this.contents.bagObject.slice(20,40));
