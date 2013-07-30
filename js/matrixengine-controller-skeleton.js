@@ -668,7 +668,7 @@ MxeDefaultController.prototype.registerEventListeners = function() {
 	this.RootScore=this.contents.scoresL["スコア0"];
 	
   this.WalkerScore.tracks[0].setPuppet(true);
-  this.WalkerScore.tracks[0].frame.pos=[0,85,-170];
+  this.WalkerScore.tracks[0].frame.pos=[0,85,-150];
   this.WalkerScore.tracks[0].frame.visible=true;
   
   this.FinalRoom.tracksL["CastBoard"].setPuppet(true);
@@ -1317,8 +1317,8 @@ MxeDefaultController.eventproc.onExitFrame28 = function(e) {
 
 MxeDefaultController.eventproc.onExitFrame30 = function(e) {
   this.WalkerScore.tracks[0].frame.pos[2]-=6;
-  if(this.WalkerScore.tracks[0].frame.pos[2]<=-170){
-	this.WalkerScore.tracks[0].frame.pos[2]=-170;
+  if(this.WalkerScore.tracks[0].frame.pos[2]<=-150){
+	this.WalkerScore.tracks[0].frame.pos[2]=-150;
 	this.WalkerScore.seekFrame(this.WalkerScore.frameLabelPos['NormalRun']);
 	document.getElementById("up").setAttribute("title","このボタンは現在使えません");
 	document.getElementById("down").setAttribute("title","このボタンは現在使えません");

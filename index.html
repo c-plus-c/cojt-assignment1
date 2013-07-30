@@ -10,6 +10,7 @@
 
 #controller{
 	float:left;
+	margin-left:10px;
 }
 
 #matrixengine-canvas{
@@ -36,6 +37,7 @@
 
 #up{
 	display:block;
+	margin-top:30px;
 	margin-left:50px;
 	clear:both;
 	background-image:url("controllerpict/up_enable.png");
@@ -85,6 +87,10 @@
 	background-image:url("controllerpict/batsu48.gif");
 }
 
+#manu{
+	clear:both;
+}
+
 -->
 </style>
 
@@ -111,7 +117,8 @@ function expandCanvas(canvas) {
     //canvas.style.height=bodyHeight*0.5;
 	canvas.style.width=bodyWidth*7/10;
 	canvas.style.height=canvas.style.width*9/10;
-
+	
+	document.getElementById("controller").style.marginTop=canvas.height/15+"px";
 };
 
 function startMatrixEngine() {
@@ -141,13 +148,15 @@ window.onloadmatrixengine = function() {
 </script>
 </head>
 
-<body width="100%" height="100%" style="position:relative; margin:0px; padding:0px" onMouseUp="Unable()">
+<body width="100%" height="100%" style="position:relative; margin:0px; padding:0px" onmouseup="Unable()" onTouchEnd="Unable()">
     <canvas width="640px" height="480px" id="matrixengine-canvas" style="border: none;"></canvas>
 	<div id="controller">
-		<div id="up" class="vertallow" title="foobar up" onMouseDown="Enable(VK_UP)"></div><div>
-		<div id="left" class="sideallow" title="foobar left" onMouseDown="Enable(VK_LEFT)"></div>
-		<div id="right" class="sideallow" title="foobar right" onMouseDown="Enable(VK_RIGHT)"></div><div id="circle" title="foobar circle" onMouseDown="Enable(VK_Z)"></div>
-		<div id="down" class="vertallow" title="foobar down" onMouseDown="Enable(VK_DOWN)"></div><div id="cross" title="foobar cross" onMouseDown="Enable(VK_X)"></div>
+		<div id="up" class="vertallow" title="foobar up" onmousedown="Enable(VK_UP)" onTouchStart="Enable(VK_UP)"></div>
+		<div id="left" class="sideallow" title="foobar left" onmousedown="Enable(VK_LEFT)" onTouchStart="Enable(VK_LEFT)"></div>
+		<div id="right" class="sideallow" title="foobar right" onmousedown="Enable(VK_RIGHT)" onTouchStart="Enable(VK_RIGHT)"></div><div id="circle" title="foobar circle" onmousedown="Enable(VK_Z)" onTouchStart="Enable(VK_Z)"></div>
+		<div id="down" class="vertallow" title="foobar down" onmousedown="Enable(VK_DOWN)" onTouchStart="Enable(VK_DOWN)"></div><div id="cross" title="foobar cross" onmousedown="Enable(VK_X)" onTouchStart="Enable(VK_X)"></div>
+		
+		<div id="manu">マニュアルページは<a href="./manual/index.html">こちら</a>。</div>
 	</div>
 </body>
 
